@@ -1,0 +1,27 @@
+/* ==================================================================
+   Gravatar
+   ================================================================== */
+
+.Gravatar {
+  border-radius: 100%;
+  flex: 1;
+  max-width: 40px;
+  overflow: hidden;
+  position: relative;
+  transition: all 200ms ease-in-out;
+  z-index: 1;
+}
+
+.Gravatar:hover {
+  border-color: var(--color-radical-red);
+}
+
+.Gravatar__image {
+  display: block;
+  max-width: 100%;
+}
+
+.small {
+  border: 0;
+  max-width: 30px;
+}
