@@ -5,6 +5,7 @@ import React from 'react'
 import type { Track } from 'models/models'
 import { timeParser } from 'utils/parsers'
 import Cover from 'components/Cover'
+import classnames from 'classnames'
 
 type QueueProps = {
   tracks: Track[]
@@ -16,11 +17,18 @@ const Queue = ({ tracks }: QueueProps) => {
   }
 
   return (
-    <ul>
+    <ul className="Queue">
       {tracks.map(track => (
-        <li key={track.spotifyUri}>
+        <li
+          className={classnames('Track', {
+            Track__pending: !track.duration
+          })}
+          key={track.spotifyUri}
+        >
           <Cover album={track.album} width={50} />
-          {track.artists.map(t => t.name).join(',')} - {track.name} ({timeParser(track.duration)})
+          <div className="Track__content">
+            {track.artists.map(t => t.name).join(',')} - {track.name} ({timeParser(track.duration)})
+          </div>
         </li>
       ))}
     </ul>

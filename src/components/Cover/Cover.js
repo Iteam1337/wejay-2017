@@ -12,7 +12,9 @@ type CoverProps = {
 
 export const Cover = ({ album, width }: CoverProps) => {
   if (!album.images || album.images.length === 0) {
-    return null
+    return (
+      <div className="Cover__temp" style={{ height: width, width: width }} />
+    )
   }
 
   return (
