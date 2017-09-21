@@ -9,6 +9,7 @@ import { gql, graphql } from 'react-apollo'
 import { timeParser } from 'utils/parsers'
 import Cover from 'components/Cover'
 import Gravatar from 'components/Gravatar'
+import Droparea from 'components/Droparea'
 
 export class Room extends Component {
   componentWillMount () {
@@ -69,7 +70,10 @@ export class Room extends Component {
         {room.name}
 
         <AddTrack roomName={room.name} />
+        <hr />
         <Next roomName={room.name} />
+        <hr />
+        <Droparea roomName={room.name} />
 
         {room.currentTrack && (
           <div>
