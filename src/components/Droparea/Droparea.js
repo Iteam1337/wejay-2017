@@ -53,9 +53,14 @@ class Droparea extends Component {
         optimisticResponse: {
           queueTrack: {
             album: [],
-            artists: [],
+            artists: [
+              {
+                name: 'Loading',
+                __typename: 'Artist'
+              }
+            ],
             duration: 0,
-            name: '',
+            name: 'Awesome track',
             spotifyUri: track,
             user: '',
             __typename: 'Track'
