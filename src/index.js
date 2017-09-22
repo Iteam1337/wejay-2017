@@ -17,10 +17,10 @@ import Start from './views/Start'
 import Room from './views/Room'
 
 const networkInterface = createNetworkInterface({
-  uri: 'http://localhost:4000/graphql'
+  uri: process.env.REACT_APP_GRAPHQL_URL
 })
 
-const wsClient = new SubscriptionClient('ws://localhost:4000/subscriptions', {
+const wsClient = new SubscriptionClient(process.env.REACT_APP_SUB_URL, {
   reconnect: true
 })
 
