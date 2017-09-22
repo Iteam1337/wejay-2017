@@ -2,8 +2,8 @@ import './Gravatar.css'
 import React from 'react'
 import md5 from 'md5'
 
-const Gravatar = ({ email, name, size }) => {
-  let address = email
+const Gravatar = ({ email, id, name, size }) => {
+  let address = email || id
 
   if (email && email.length > 0) {
     address = md5(email)
