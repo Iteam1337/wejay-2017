@@ -1,16 +1,19 @@
 import React from 'react'
 import { roomQuery } from './Room'
 import { gql, graphql } from 'react-apollo'
+import md5 from 'md5'
 
 const AddTrack = ({ mutate, roomName }) => {
   const handleKeyUp = evt => {
     if (evt.keyCode === 13) {
+      const userId = md5(localStorage.getItem('user'))
+
       mutate({
         variables: {
           input: {
             roomName,
-            spotifyId: evt.target.value,
-            userId: '01ba46cb8ee556f83c580648547e0fbc'
+            userId,
+            spotifyId: evt.target.value
           }
         },
         optimisticResponse: {

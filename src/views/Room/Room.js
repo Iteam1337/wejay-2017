@@ -3,11 +3,10 @@
 import './Room.css'
 import React, { Component } from 'react'
 import Queue from 'components/Queue'
+import Track from 'components/Track'
 import AddTrack from './AddTrack'
 import Next from './Next'
 import { gql, graphql } from 'react-apollo'
-import { timeParser } from 'utils/parsers'
-import Cover from 'components/Cover'
 import Gravatar from 'components/Gravatar'
 import Droparea from 'components/Droparea'
 
@@ -67,31 +66,23 @@ export class Room extends Component {
 
     return (
       <div>
-        {room.name}
-
-        <AddTrack roomName={room.name} />
-        <hr />
-        <Next roomName={room.name} />
-        <hr />
         <Droparea roomName={room.name} />
+        <div className="Room">
+          <AddTrack roomName={room.name} />
+          <Next roomName={room.name} />
 
-        {room.currentTrack && (
-          <div>
-            <Cover album={room.currentTrack.album} width={50} />
-            {room.currentTrack.artists.map(t => t.name).join(',')} -{' '}
-            {room.currentTrack.name} ({timeParser(room.currentTrack.duration)})
-          </div>
-        )}
+          <Track track={room.currentTrack} />
 
-        <ul>
-          {room.users.map(user => (
-            <li key={user.id}>
-              <Gravatar email={user.email} />
-            </li>
-          ))}
-        </ul>
+          <ul>
+            {room.users.map(user => (
+              <li key={user.id}>
+                <Gravatar email={user.email} />
+              </li>
+            ))}
+          </ul>
 
-        <Queue tracks={room.queue} />
+          <Queue tracks={room.queue} />
+        </div>
       </div>
     )
   }
@@ -112,7 +103,10 @@ Room.fragments = {
       duration
       name
       spotifyUri
-      user
+      user {
+        email
+        id
+      }
     }
   `
 }

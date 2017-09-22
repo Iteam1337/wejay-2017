@@ -1,0 +1,7 @@
+.Room {
+  display: flex;
+  flex-direction: column;
+  margin: 120px auto 0;
+  width: 70vw;
+  position: relative;
+  z-index: 10; }
