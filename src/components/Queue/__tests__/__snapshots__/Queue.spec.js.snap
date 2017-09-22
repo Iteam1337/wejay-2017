@@ -1,9 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Queue can render 1`] = `
-<ul>
-  <li>
-    Circles
-  </li>
+<ul
+  className="Queue"
+>
+  <Track
+    track={
+      Object {
+        "name": "Circles",
+        "spotifyUri": 1337,
+      }
+    }
+  />
 </ul>
 `;

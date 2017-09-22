@@ -7,10 +7,16 @@ describe('components/Queue', () => {
   let component
 
   beforeEach(() => {
-    component = shallow(<Queue tracks={[{
-      name: 'Circles',
-      id: 1337
-    }]} />)
+    component = shallow(
+      <Queue
+        tracks={[
+          {
+            name: 'Circles',
+            spotifyUri: 1337
+          }
+        ]}
+      />
+    )
   })
 
   it('can render', () => {
