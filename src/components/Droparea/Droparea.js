@@ -1,7 +1,9 @@
-import React, { Component } from 'react'
 import './Droparea.css'
+import React, { Component } from 'react'
 import { gql, graphql } from 'react-apollo'
 import { roomQuery } from 'views/Room/Room'
+import classnames from 'classnames'
+import md5 from 'md5'
 
 class Droparea extends Component {
   state = {
@@ -30,6 +32,7 @@ class Droparea extends Component {
 
   _onDrop = e => {
     const { mutate, roomName } = this.props
+    const userId = md5(localStorage.getItem('user'))
 
     e.stopPropagation()
     e.preventDefault()
@@ -39,15 +42,13 @@ class Droparea extends Component {
       .replace(/https:\/\/open.spotify.com\/track\//gi, '')
       .split('\n')
 
-    console.log(songs)
-
-    songs.forEach(track => {
+    songs.reverse().forEach(track => {
       mutate({
         variables: {
           input: {
             roomName,
-            spotifyId: track,
-            userId: '01ba46cb8ee556f83c580648547e0fbc'
+            userId,
+            spotifyId: track
           }
         },
         optimisticResponse: {
@@ -62,7 +63,11 @@ class Droparea extends Component {
             duration: 0,
             name: 'Awesome track',
             spotifyUri: track,
-            user: '',
+            user: {
+              email: '',
+              id: userId,
+              __typename: 'User'
+            },
             __typename: 'Track'
           }
         },
@@ -97,32 +102,18 @@ class Droparea extends Component {
       })
     })
 
-    // Promise.all(songs.map(song => get(song)))
-    //   .then(tracks => {
-    //     tracks.forEach(track => this.props.roomActions.addTrack(track))
-
-    //     this.setState({
-    //       isDragOver: false
-    //     })
-    //   })
-    //   .catch(err => {
-    //     console.log(err)
-    //     this.props.toastActions.add({
-    //       message: 'Song was not hot enough.',
-    //       type: 'error'
-    //     })
-
-    //     this.setState({
-    //       isDragOver: false
-    //     })
-    //   })
+    this.setState({
+      isDragOver: false
+    })
   }
 
   render () {
     return (
       <div className="Droparea__wrap">
         <textarea
-          className="Droparea"
+          className={classnames('Droparea', {
+            'Droparea--is-dragging': this.state.isDragOver
+          })}
           defaultValue={this.props.message}
           onDragEnter={this._onDragEnter}
           onDragLeave={this._onDragLeave}
@@ -153,7 +144,10 @@ const addTrackMutation = gql`
       duration
       name
       spotifyUri
-      user
+      user {
+        email
+        id
+      }
     }
   }
 `

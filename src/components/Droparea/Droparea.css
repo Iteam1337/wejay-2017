@@ -1,55 +1,30 @@
 /* ==================================================================
    Droparea
    ================================================================== */
-
 .Droparea {
-  align-items: center;
-  background: red;
+  background: none;
   border: 0;
-  box-sizing: border-box;
+  bottom: 0;
   color: transparent;
-  display: flex;
-  font-family: 'Roboto';
-  font-size: 32px;
-  font-weight: 300;
-  flex-direction: column;
-  height: 200px;
-  justify-content: center;
-  letter-spacing: 0.02em;
-  padding: 80px 0;
+  cursor: default;
+  height: 100%;
+  left: 0;
   position: fixed;
   resize: none;
-  left: 0;
-  text-align: center;
-  bottom: 0;
-  transition: all 200ms ease-in-out;
-  z-index: 20;
-  user-select: none;
-  width: 100%;
+  width: 100%; }
+  .Droparea:focus {
+    outline: none; }
 
-  &:focus {
-    outline: none;
-  }
-
-  @media (max-height: 1100px) {
-    height: 120px;
-    padding: 40px 0;
-  }
-
-  @media (--bp-med) {
-    box-sizing: border-box;
-  }
-}
+.Droparea--is-dragging {
+  background: rgba(66, 185, 131, 0.2); }
 
 .active {
   background: var(--color-cod-gray);
   border-color: var(--color-cod-gray) !important;
-  text-shadow: 0 0 0 #f0f0f0;
-}
+  text-shadow: 0 0 0 #f0f0f0; }
 
 .Droparea__wrap {
-  position: relative;
-}
+  position: relative; }
 
 .icon {
   color: #fff;
@@ -58,8 +33,7 @@
   left: 50%;
   top: 32%;
   transform: translateX(-50%);
-  z-index: 100;
-}
+  z-index: 100; }
 
 .empty {
   border: 3px dashed #444;
@@ -70,5 +44,4 @@
   position: relative;
   height: 500px;
   text-shadow: 0 0 0 #f0f0f0;
-  width: 800px;
-}
+  width: 800px; }
