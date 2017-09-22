@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Gravatar renders Gravatar 1`] = `
+<div
+  className="Gravatar"
+  style={
+    Object {
+      "height": 50,
+      "maxWidth": 50,
+      "width": 50,
+    }
+  }
+>
+  <img
+    alt="Name"
+    className="Gravatar__image"
+    src="https://www.gravatar.com/avatar/md5&s=50"
+  />
+</div>
+`;
+
+exports[`components/Gravatar renders Gravatar using id 1`] = `
+<div
+  className="Gravatar"
+  style={
+    Object {
+      "height": 50,
+      "maxWidth": 50,
+      "width": 50,
+    }
+  }
+>
+  <img
+    alt="Name"
+    className="Gravatar__image"
+    src="https://www.gravatar.com/avatar/123&s=50"
+  />
+</div>
+`;

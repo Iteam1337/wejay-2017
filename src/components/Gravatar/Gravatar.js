@@ -2,7 +2,14 @@ import './Gravatar.css'
 import React from 'react'
 import md5 from 'md5'
 
-const Gravatar = ({ email, id, name, size }) => {
+type GravatarProps = {
+  alt?: string,
+  email?: string,
+  id?: string,
+  size: number
+}
+
+const Gravatar = ({ email, id, alt, size }: GravatarProps) => {
   let address = email || id
 
   if (email && email.length > 0) {
@@ -20,7 +27,7 @@ const Gravatar = ({ email, id, name, size }) => {
       className="Gravatar"
       style={{ maxWidth: size, width: size, height: size }}
     >
-      <img alt={name} className="Gravatar__image" src={gravatar} />
+      <img alt={alt} className="Gravatar__image" src={gravatar} />
     </div>
   )
 }

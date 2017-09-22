@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Cover renders Cover 1`] = `
+<img
+  alt="Album cover"
+  className="Cover"
+  src="test.png"
+  style={
+    Object {
+      "width": 50,
+    }
+  }
+/>
+`;
+
+exports[`components/Cover renders a temp cover if no images are provided 1`] = `
+<div
+  className="Cover__temp"
+  style={
+    Object {
+      "height": 50,
+      "width": 50,
+    }
+  }
+/>
+`;

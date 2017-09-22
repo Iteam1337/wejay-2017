@@ -1,16 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/AddRoom renders AddRoom 1`] = `
-<div>
-  <input
-    onChange={[Function]}
-    placeholder="Room name"
-    type="text"
-  />
-  <button
-    onClick={[Function]}
+<div
+  className="AddRoom"
+>
+  <form
+    method="POST"
+    onSubmit={[Function]}
   >
-    Add new room
-  </button>
+    <input
+      className="Input"
+      onChange={[Function]}
+      placeholder="Room name"
+      type="text"
+    />
+    <button
+      className="Rooms__button"
+      disabled={true}
+      type="submit"
+    >
+      Add new room
+    </button>
+  </form>
 </div>
 `;
