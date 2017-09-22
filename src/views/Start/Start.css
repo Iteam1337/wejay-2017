@@ -6,17 +6,7 @@
 
 .Start__content {
   background: #fff;
-  border-radius: 3px;
-  display: flex; }
-
-.Start__title {
-  align-items: center;
-  background: #fcc169;
-  border-radius: 3px 0 0 3px;
-  color: #fff;
-  display: flex;
-  font-size: 48px;
-  padding: 80px; }
+  border-radius: 3px; }
 
 .Start__rooms {
   padding: 40px; }

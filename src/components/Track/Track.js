@@ -1,5 +1,6 @@
 import './Track.css'
 import React from 'react'
+import Cover from 'components/Cover'
 import Gravatar from 'components/Gravatar'
 import { timeParser } from 'utils/parsers'
 import classnames from 'classnames'
@@ -15,7 +16,10 @@ const Track = ({ track }) => {
         Track__pending: !track.duration
       })}
     >
-      <Gravatar id={track.user.id} width={50} />
+      <div className="Track__cover">
+        <Cover album={track.album} small width={100} />
+        <Gravatar className="Track__gravatar" id={track.user.id} size={30} />
+      </div>
       <div className="Track__content">
         <div className="Track__artist">
           {track.artists.map(t => t.name).join(', ')}

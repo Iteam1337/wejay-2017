@@ -2,14 +2,11 @@
 
 import './Room.css'
 import React, { Component } from 'react'
-import Queue from 'components/Queue'
-import Backdrop from 'components/Backdrop'
-import Track from 'components/Track'
-import Cover from 'components/Cover'
-import AddTrack from './AddTrack'
-import Next from './Next'
 import { gql, graphql } from 'react-apollo'
+import Cover from 'components/Cover'
 import Droparea from 'components/Droparea'
+import Gravatar from 'components/Gravatar'
+import Queue from 'components/Queue'
 import Users from 'components/Users'
 
 export class Room extends Component {
@@ -68,19 +65,30 @@ export class Room extends Component {
 
     return (
       <div>
-        <Backdrop track={room.currentTrack} />
-        <div className="Room__overlay" />
         <Droparea roomName={room.name} />
         <div className="Room">
           <div className="Room__cover">
+            <h2 className="Room__title">Now Playing</h2>
             {room.currentTrack && <Cover album={room.currentTrack.album} />}
-            <Users users={room.users} />
+            {room.currentTrack && (
+              <div className="Room__now-playing">
+                <div className="Room__now-playing-track">
+                  <div className="Track__artist">
+                    {room.currentTrack.artists.map(t => t.name).join(', ')}
+                  </div>
+                  <div className="Track__name">{room.currentTrack.name}</div>
+                </div>
+                <Gravatar id={room.currentTrack.user.id} size={30} />
+              </div>
+            )}
           </div>
           <div className="Room__content">
-            {/* <AddTrack roomName={room.name} /> */}
-            <Next roomName={room.name} />
-            <Track track={room.currentTrack} />
+            <h2 className="Room__title">Queue</h2>
             <Queue tracks={room.queue} />
+          </div>
+          <div>
+            <h2 className="Room__title">Users</h2>
+            <Users users={room.users} />
           </div>
         </div>
       </div>

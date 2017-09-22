@@ -12,6 +12,7 @@ const Users = ({ users }) => {
       {users.map(user => (
         <li className="Users__user" key={user.id}>
           <Gravatar email={user.email} size={30} />
+          <div className="Users__email">{user.email}</div>
         </li>
       ))}
     </ul>

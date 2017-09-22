@@ -1,3 +1,6 @@
 .Queue {
-  list-style: none;
-  padding: 0; }
+  height: 60vh;
+  overflow: auto; }
+
+.Queue > .Track:not(:last-child) {
+  margin-bottom: 30px; }

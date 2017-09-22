@@ -3,9 +3,30 @@
    ================================================================== */
 
 .Cover {
-  border-radius: 3px;
-  box-shadow: 0px 0px 10px rgba(33, 33, 33, 0.3);
+  position: relative;
+}
+
+.Cover__image {
+  border-radius: 4px;
   max-width: 100%;
+  position: relative;
+  vertical-align: top;
+  z-index: 2;
+}
+
+.Cover__shadow {
+  bottom: -25px;
+  filter: blur(15px);
+  left: 0;
+  max-width: 100%;
+  position: absolute;
+  transform: scale(0.9);
+  z-index: 1;
+}
+
+.Cover__shadow--small {
+  bottom: -10px;
+  transform: scale(0.7);
 }
 
 .Cover__temp {

@@ -59,7 +59,6 @@ export class Start extends Component<StartProps, StartState> {
     return (
       <div className="Start">
         <div className="Start__content">
-          <div className="Start__title">W</div>
           <div className="Start__rooms">
             {!hasUser && (
               <div>

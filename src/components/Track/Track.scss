@@ -1,12 +1,15 @@
 .Track {
   align-items: center;
-  color: #f0f0f0;
-  display: flex;
-  transition: opacity 300ms ease-in-out;
+  border-radius: 0 4px 4px 0;
+  display: grid;
+  grid-column-gap: 20px;
+  grid-template-columns: 80px 1fr 30px;
+  transition: opacity 300ms ease-in-out, background-color 200ms ease-in-out;
   opacity: 1;
+  padding-right: 20px;
 
-  &:not(:last-child) {
-    margin-bottom: 20px;
+  &:hover {
+    background-color: rgba(255, 134, 0, 0.05);
   }
 }
 
@@ -20,15 +23,34 @@
 }
 
 .Track__artist {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
   margin-bottom: 5px;
 }
 
 .Track__name {
-  font-size: 13px;
+  color: #666;
+  font-size: 16px;
+  margin-bottom: 5px;
 }
 
 .Track__duration {
-  color: #666666;
+  color: #999;
+  font-size: 14px;
+}
+
+.Track__cover {
+  position: relative;
+  transition: transform 500ms ease-in-out;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.Gravatar.Track__gravatar {
+  bottom: -10px;
+  position: absolute;
+  right: -10px;
+  z-index: 3;
 }

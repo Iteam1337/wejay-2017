@@ -16,7 +16,7 @@
     outline: none; }
 
 .Droparea--is-dragging {
-  background: rgba(66, 185, 131, 0.2); }
+  background: rgba(255, 134, 0, 0.2); }
 
 .active {
   background: var(--color-cod-gray);
