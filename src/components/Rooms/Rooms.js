@@ -25,11 +25,18 @@ export class Rooms extends Component {
   render () {
     const { rooms } = this.props
 
+    if (!rooms.length) {
+      return <div>No active rooms</div>
+    }
+
     return (
-      <ul>
+      <ul className="Rooms">
         {rooms.map((room, i) => (
-          <li key={`room-${i}`}>
-            <button onClick={() => this.joinRoom(room.name)}>
+          <li className="Rooms__room" key={`room-${i}`}>
+            <button
+              className="Rooms__button"
+              onClick={() => this.joinRoom(room.name)}
+            >
               {room.name}
             </button>
           </li>

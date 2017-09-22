@@ -9,7 +9,7 @@ const Gravatar = ({ email, id, name, size }) => {
     address = md5(email)
   }
 
-  let gravatar = `http://www.gravatar.com/avatar/${address}`
+  let gravatar = `https://www.gravatar.com/avatar/${address}`
 
   if (size) {
     gravatar = `${gravatar}&s=${size}`

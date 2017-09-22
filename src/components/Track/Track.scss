@@ -1,11 +1,12 @@
 .Track {
   align-items: center;
+  color: #f0f0f0;
   display: flex;
   transition: opacity 300ms ease-in-out;
   opacity: 1;
 
   &:not(:last-child) {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 }
 
@@ -16,4 +17,18 @@
 .Track__content {
   flex: 1;
   margin-left: 10px;
+}
+
+.Track__artist {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.Track__name {
+  font-size: 13px;
+}
+
+.Track__duration {
+  color: #666666;
 }

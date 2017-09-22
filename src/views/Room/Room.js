@@ -3,12 +3,14 @@
 import './Room.css'
 import React, { Component } from 'react'
 import Queue from 'components/Queue'
+import Backdrop from 'components/Backdrop'
 import Track from 'components/Track'
+import Cover from 'components/Cover'
 import AddTrack from './AddTrack'
 import Next from './Next'
 import { gql, graphql } from 'react-apollo'
-import Gravatar from 'components/Gravatar'
 import Droparea from 'components/Droparea'
+import Users from 'components/Users'
 
 export class Room extends Component {
   componentWillMount () {
@@ -66,22 +68,20 @@ export class Room extends Component {
 
     return (
       <div>
+        <Backdrop track={room.currentTrack} />
+        <div className="Room__overlay" />
         <Droparea roomName={room.name} />
         <div className="Room">
-          <AddTrack roomName={room.name} />
-          <Next roomName={room.name} />
-
-          <Track track={room.currentTrack} />
-
-          <ul>
-            {room.users.map(user => (
-              <li key={user.id}>
-                <Gravatar email={user.email} />
-              </li>
-            ))}
-          </ul>
-
-          <Queue tracks={room.queue} />
+          <div className="Room__cover">
+            {room.currentTrack && <Cover album={room.currentTrack.album} />}
+            <Users users={room.users} />
+          </div>
+          <div className="Room__content">
+            {/* <AddTrack roomName={room.name} /> */}
+            <Next roomName={room.name} />
+            <Track track={room.currentTrack} />
+            <Queue tracks={room.queue} />
+          </div>
         </div>
       </div>
     )

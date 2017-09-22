@@ -7,7 +7,8 @@ export class AddRoom extends Component {
     roomName: ''
   }
 
-  addRoom = () => {
+  addRoom = event => {
+    event.preventDefault()
     const { mutate } = this.props
     const { roomName } = this.state
 
@@ -42,15 +43,26 @@ export class AddRoom extends Component {
   }
 
   render () {
+    const { roomName } = this.state
+
     return (
-      <div>
-        <input
-          onChange={this.updateRoomName}
-          placeholder="Room name"
-          type="text"
-          value={this.state.roomname}
-        />
-        <button onClick={this.addRoom}>Add new room</button>
+      <div className="AddRoom">
+        <form method="POST" onSubmit={this.addRoom}>
+          <input
+            className="Input"
+            onChange={this.updateRoomName}
+            placeholder="Room name"
+            type="text"
+            value={this.state.roomname}
+          />
+          <button
+            className="Rooms__button"
+            disabled={roomName.length === 0}
+            type="submit"
+          >
+            Add new room
+          </button>
+        </form>
       </div>
     )
   }
