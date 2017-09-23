@@ -12,7 +12,6 @@ class Position extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    console.log(this.props.track, nextProps.track)
     if (this.props.track.spotifyUri !== nextProps.track.spotifyUri) {
       clearInterval(this.timer)
 
