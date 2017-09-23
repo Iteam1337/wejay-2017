@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Room renders Room 1`] = `
+<div>
+  <Apollo(Droparea)
+    roomName="test"
+  />
+  <div
+    className="Room"
+  >
+    <div
+      className="Room__cover"
+    >
+      <h2
+        className="Room__title"
+      >
+        Now Playing
+      </h2>
+      <Component
+        track={
+          Object {
+            "artists": Array [
+              Object {
+                "name": "artist",
+              },
+              Object {
+                "name": "artist two",
+              },
+            ],
+            "name": "track",
+            "user": Object {
+              "id": "1337",
+            },
+          }
+        }
+      />
+      <div
+        className="Room__now-playing"
+      >
+        <div
+          className="Room__now-playing-track"
+        >
+          <div
+            className="Track__artist"
+          >
+            artist, artist two
+          </div>
+          <div
+            className="Track__name"
+          >
+            track
+          </div>
+        </div>
+        <Gravatar
+          email=""
+          id="1337"
+          size={30}
+        />
+      </div>
+    </div>
+    <div
+      className="Room__content"
+    >
+      <h2
+        className="Room__title"
+      >
+        Queue
+      </h2>
+      <Queue
+        tracks={Array []}
+      />
+    </div>
+    <div>
+      <h2
+        className="Room__title"
+      >
+        Users
+      </h2>
+      <Users
+        users={Array []}
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components/Room renders a loading message 1`] = `
+<div>
+  Loading
+</div>
+`;
+
+exports[`components/Room renders error message 1`] = `
+<div>
+  Error
+</div>
+`;

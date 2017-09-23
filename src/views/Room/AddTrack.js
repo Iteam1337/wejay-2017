@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { roomQuery } from './Room'
 import { gql, graphql } from 'react-apollo'
 import md5 from 'md5'
 
-const AddTrack = ({ mutate, roomName }) => {
-  const handleKeyUp = evt => {
+export class AddTrack extends Component {
+  handleKeyUp = evt => {
+    const { mutate, roomName } = this.props
+
     if (evt.keyCode === 13) {
       const userId = md5(localStorage.getItem('user'))
 
@@ -61,11 +63,17 @@ const AddTrack = ({ mutate, roomName }) => {
     }
   }
 
-  return (
-    <div>
-      <input onKeyUp={handleKeyUp} placeholder="Spotify URI" type="text" />
-    </div>
-  )
+  render () {
+    return (
+      <div>
+        <input
+          onKeyUp={this.handleKeyUp}
+          placeholder="Spotify URI"
+          type="text"
+        />
+      </div>
+    )
+  }
 }
 
 const addTrackMutation = gql`

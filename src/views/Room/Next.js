@@ -1,7 +1,7 @@
 import React from 'react'
 import { gql, graphql } from 'react-apollo'
 
-const Next = ({ mutate, roomName }) => {
+export const Next = ({ mutate, roomName }) => {
   const handleNext = () => {
     mutate({
       variables: {
