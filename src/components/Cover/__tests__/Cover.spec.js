@@ -9,12 +9,14 @@ describe('components/Cover', () => {
   beforeEach(() => {
     component = shallow(
       <Cover
-        album={{
-          images: [
-            {
-              url: 'test.png'
-            }
-          ]
+        track={{
+          album: {
+            images: [
+              {
+                url: 'test.png'
+              }
+            ]
+          }
         }}
         width={50}
       />
@@ -23,7 +25,7 @@ describe('components/Cover', () => {
 
   it('renders a temp cover if no images are provided', () => {
     component.setProps({
-      album: {}
+      track: { album: {} }
     })
 
     expect(toJson(component)).toMatchSnapshot()
