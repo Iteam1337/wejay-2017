@@ -31,5 +31,24 @@
 
 .Cover__temp {
   background: #333;
-  border-radius: 3px;
+  border-radius: 4px;
+}
+
+.Position {
+  height: 310px;
+  left: -5px;
+  position: absolute;
+  top: -5px;
+  width: 310px;
+}
+
+.shape {
+  stroke-dasharray: 1500;
+  stroke-dashoffset: 1500;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 5px;
+  fill: transparent;
+  stroke: rgba(255, 134, 0, 0.4);
+  transition: stroke-dashoffset 100ms ease-in-out;
 }

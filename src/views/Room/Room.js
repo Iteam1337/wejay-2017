@@ -69,7 +69,7 @@ export class Room extends Component {
         <div className="Room">
           <div className="Room__cover">
             <h2 className="Room__title">Now Playing</h2>
-            {room.currentTrack && <Cover album={room.currentTrack.album} />}
+            {room.currentTrack && <Cover track={room.currentTrack} />}
             {room.currentTrack && (
               <div className="Room__now-playing">
                 <div className="Room__now-playing-track">
@@ -101,7 +101,9 @@ Room.fragments = {
     fragment TrackInfo on Track {
       album {
         images {
+          height
           url
+          width
         }
         name
       }
@@ -111,6 +113,7 @@ Room.fragments = {
       duration
       name
       spotifyUri
+      started
       user {
         email
         id

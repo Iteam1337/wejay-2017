@@ -63,6 +63,7 @@ class Droparea extends Component {
             duration: 0,
             name: 'Awesome track',
             spotifyUri: track,
+            started: 0,
             user: {
               email: '',
               id: userId,

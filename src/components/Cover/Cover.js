@@ -1,6 +1,7 @@
 import './Cover.css'
 import React from 'react'
 import classnames from 'classnames'
+import Position from './Position'
 
 type CoverProps = {
   album: {
@@ -12,8 +13,8 @@ type CoverProps = {
   width?: number
 }
 
-export const Cover = ({ album, small, width }: CoverProps) => {
-  if (!album.images || album.images.length === 0) {
+export const Cover = ({ track, small, width }: CoverProps) => {
+  if (!track.album.images || track.album.images.length === 0) {
     return (
       <div className="Cover__temp" style={{ height: width, width: width }} />
     )
@@ -21,10 +22,11 @@ export const Cover = ({ album, small, width }: CoverProps) => {
 
   return (
     <div className="Cover">
+      {!small && <Position track={track} />}
       <img
         alt="Album cover"
         className="Cover__image"
-        src={album.images[0].url}
+        src={track.album.images[0].url}
         style={{ width: width }}
       />
       <img
@@ -32,7 +34,7 @@ export const Cover = ({ album, small, width }: CoverProps) => {
         className={classnames('Cover__shadow', {
           'Cover__shadow--small': small
         })}
-        src={album.images[0].url}
+        src={track.album.images[0].url}
         style={{ width: width }}
       />
     </div>
