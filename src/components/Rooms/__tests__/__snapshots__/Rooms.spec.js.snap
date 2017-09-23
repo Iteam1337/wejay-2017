@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Rooms renders Rooms 1`] = `
+<ul
+  className="Rooms"
+>
+  <li
+    className="Rooms__room"
+  >
+    <button
+      className="Rooms__button"
+      onClick={[Function]}
+    >
+      test
+    </button>
+  </li>
+</ul>
+`;
+
+exports[`components/Rooms returns empty state if no rooms 1`] = `
+<div>
+  No active rooms
+</div>
+`;

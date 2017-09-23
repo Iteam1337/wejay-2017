@@ -1,2 +1,2 @@
-import StartContainer from './StartContainer'
-export default StartContainer
+import Start from './Start'
+export default Start

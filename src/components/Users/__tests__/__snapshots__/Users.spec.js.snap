@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Users renders Users 1`] = `
+<ul
+  className="Users"
+>
+  <li
+    className="Users__user"
+  >
+    <Gravatar
+      email="cookie@monster.com"
+      size={30}
+    />
+    <div
+      className="Users__email"
+    >
+      cookie@monster.com
+    </div>
+  </li>
+</ul>
+`;

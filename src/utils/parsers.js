@@ -12,16 +12,6 @@ export function timeParser (sum) {
   let minutes = Math.floor(sum / 60 - 60 * hours)
   let seconds = Math.round(((sum / 60) % 1) * 60)
 
-  if (seconds === 60) {
-    seconds = 0
-    minutes++
-  }
-
-  if (minutes === 60) {
-    minutes = 0
-    hours++
-  }
-
   if (minutes < 10 && hours > 0) {
     minutes = `0${minutes}`
   }

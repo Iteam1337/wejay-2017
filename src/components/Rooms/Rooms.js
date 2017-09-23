@@ -7,7 +7,7 @@ import { withRouter } from 'react-router-dom'
 
 export class Rooms extends Component {
   joinRoom = async name => {
-    if (!localStorage.user) {
+    if (!localStorage.getItem('user')) {
       return
     }
 
@@ -15,7 +15,7 @@ export class Rooms extends Component {
 
     await mutate({
       variables: {
-        input: { roomName: name, email: localStorage.user }
+        input: { roomName: name, email: localStorage.getItem('user') }
       }
     })
 

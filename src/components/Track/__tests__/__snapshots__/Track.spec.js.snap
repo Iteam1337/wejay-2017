@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Track renders Track 1`] = `
+<li
+  className="Track"
+>
+  <div
+    className="Track__cover"
+  >
+    <Component
+      small={true}
+      track={
+        Object {
+          "artists": Array [
+            Object {
+              "name": "artist",
+            },
+            Object {
+              "name": "artist two",
+            },
+          ],
+          "duration": 200,
+          "name": "track",
+          "user": Object {
+            "id": "1",
+          },
+        }
+      }
+      width={80}
+    />
+    <Gravatar
+      className="Track__gravatar"
+      email=""
+      id="1"
+      size={30}
+    />
+  </div>
+  <div
+    className="Track__content"
+  >
+    <div
+      className="Track__artist"
+    >
+      artist, artist two
+    </div>
+    <div
+      className="Track__name"
+    >
+      track
+    </div>
+  </div>
+  <div
+    className="Track__duration"
+  >
+    0:00
+  </div>
+</li>
+`;
+
+exports[`components/Track renders a pending Track if no duration (optimisticResponse) 1`] = `
+<div
+  className="Track Track__pending"
+>
+  <div
+    className="Track__cover"
+  >
+    <Component
+      small={true}
+      track={
+        Object {
+          "duration": 0,
+          "user": Object {
+            "id": "1",
+          },
+        }
+      }
+      width={80}
+    />
+    <Gravatar
+      className="Track__gravatar"
+      email=""
+      id="1"
+      size={30}
+    />
+  </div>
+  <div
+    className="Track__content"
+  >
+    <div
+      className="Track__artist"
+    />
+    <div
+      className="Track__name"
+    />
+  </div>
+  <div
+    className="Track__duration"
+  />
+</div>
+`;
