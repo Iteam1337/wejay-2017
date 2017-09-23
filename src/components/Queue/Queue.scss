@@ -6,3 +6,11 @@
 .Queue > .Track:not(:last-child) {
   margin-bottom: 30px;
 }
+
+.EmptyState {
+  background: #fafafa;
+  border-radius: 4px;
+  color: #999;
+  padding: 40px;
+  text-align: center;
+}

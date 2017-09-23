@@ -9,8 +9,8 @@ type QueueProps = {
 }
 
 const Queue = ({ tracks }: QueueProps) => {
-  if (!tracks) {
-    return null
+  if (!tracks || tracks.length === 0) {
+    return <div className="EmptyState">Queue is empty</div>
   }
 
   return (
