@@ -10,8 +10,33 @@
   .Track:hover {
     background-color: rgba(255, 134, 0, 0.05); }
 
-.Track__pending {
+.Track.Track__pending {
   opacity: 0.3; }
+  .Track.Track__pending .Track__artist {
+    animation: 1.5s pending alternate-reverse infinite;
+    background: #333;
+    border-radius: 2px;
+    height: 21px;
+    transform-origin: 0;
+    width: 80px; }
+  .Track.Track__pending .Track__name {
+    animation: 2s pending alternate-reverse infinite;
+    background: #999;
+    border-radius: 2px;
+    height: 19px;
+    transform-origin: 0;
+    width: 200px; }
+  .Track.Track__pending .Track__duration {
+    background: #ccc;
+    border-radius: 2px;
+    height: 16px;
+    width: 30px; }
+
+@keyframes pending {
+  from {
+    transform: scaleX(0); }
+  to {
+    transform: scaleX(1); } }
 
 .Track__content {
   flex: 1;

@@ -10,6 +10,22 @@ const Track = ({ track }) => {
     return null
   }
 
+  if (!track.duration) {
+    return (
+      <div className="Track Track__pending">
+        <div className="Track__cover">
+          <Cover small track={track} width={80} />
+          <Gravatar className="Track__gravatar" id={track.user.id} size={30} />
+        </div>
+        <div className="Track__content">
+          <div className="Track__artist" />
+          <div className="Track__name" />
+        </div>
+        <div className="Track__duration" />
+      </div>
+    )
+  }
+
   return (
     <li
       className={classnames('Track', {
@@ -17,7 +33,7 @@ const Track = ({ track }) => {
       })}
     >
       <div className="Track__cover">
-        <Cover album={track.album} small width={100} />
+        <Cover small track={track} width={80} />
         <Gravatar className="Track__gravatar" id={track.user.id} size={30} />
       </div>
       <div className="Track__content">
