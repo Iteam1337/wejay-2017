@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { roomQuery } from './RoomContainer'
+import { roomQuery } from './Room'
 import { gql, graphql } from 'react-apollo'
 import md5 from 'md5'
 

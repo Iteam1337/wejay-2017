@@ -1,7 +1,7 @@
 import './Droparea.css'
 import React, { Component } from 'react'
 import { gql, graphql } from 'react-apollo'
-import { roomQuery } from 'views/Room/RoomContainer'
+import { roomQuery } from 'views/Room/Room'
 import classnames from 'classnames'
 import md5 from 'md5'
 

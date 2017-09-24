@@ -2,8 +2,7 @@
 
 import './Room.css'
 import React, { Component } from 'react'
-import { queueUpdated, onNextTrack } from './RoomContainer'
-import { gql } from 'react-apollo'
+import { gql, graphql } from 'react-apollo'
 import Cover from 'components/Cover'
 import Droparea from 'components/Droparea'
 import Gravatar from 'components/Gravatar'
@@ -37,34 +36,8 @@ type RoomProps = {
   }
 }
 
-export default class Room extends Component {
+export class Room extends Component {
   props: RoomProps
-
-  static fragments = {
-    track: gql`
-      fragment TrackInfo on Track {
-        album {
-          images {
-            height
-            url
-            width
-          }
-          name
-        }
-        artists {
-          name
-        }
-        duration
-        name
-        spotifyUri
-        started
-        user {
-          email
-          id
-        }
-      }
-    `
-  }
 
   componentWillMount () {
     this.props.data.subscribeToMore({
@@ -151,3 +124,72 @@ export default class Room extends Component {
     )
   }
 }
+
+Room.fragments = {
+  track: gql`
+    fragment TrackInfo on Track {
+      album {
+        images {
+          height
+          url
+          width
+        }
+        name
+      }
+      artists {
+        name
+      }
+      duration
+      name
+      spotifyUri
+      started
+      user {
+        email
+        id
+      }
+    }
+  `
+}
+
+export const roomQuery = gql`
+query RoomQuery($name: String!) {
+  room(name: $name) {
+    currentTrack {
+      ...TrackInfo
+    }
+    name
+    users {
+      email
+      id
+    }
+    queue {
+      ...TrackInfo
+    }
+  }
+}
+${Room.fragments.track}
+`
+
+export const queueUpdated = gql`
+subscription queueUpdated($roomName: String!) {
+  queueUpdated(roomName: $roomName) {
+    ...TrackInfo
+  }
+}
+${Room.fragments.track}
+`
+
+export const onNextTrack = gql`
+subscription onNextTrack($roomName: String!) {
+  onNextTrack(roomName: $roomName) {
+    ...TrackInfo
+  }
+}
+${Room.fragments.track}
+`
+
+export default graphql(roomQuery, {
+  options: props => ({
+    variables: { name: props.match.params.name }
+  })
+})(Room)
