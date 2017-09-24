@@ -1,7 +1,12 @@
 import React from 'react'
 import { gql, graphql } from 'react-apollo'
 
-export const Next = ({ mutate, roomName }) => {
+type NextProps = {
+  mutate: Function,
+  roomName: string
+}
+
+export const Next = ({ mutate, roomName }: NextProps) => {
   const handleNext = () => {
     mutate({
       variables: {

@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
-import { roomQuery } from './Room'
+import { roomQuery } from './RoomContainer'
 import { gql, graphql } from 'react-apollo'
 import md5 from 'md5'
 
+type AddTrackProps = {
+  mutate: Function,
+  roomName: string
+}
+
 export class AddTrack extends Component {
+  props: AddTrackProps
+
   handleKeyUp = evt => {
     const { mutate, roomName } = this.props
 

@@ -1,11 +1,19 @@
 import './Droparea.css'
 import React, { Component } from 'react'
 import { gql, graphql } from 'react-apollo'
-import { roomQuery } from 'views/Room/Room'
+import { roomQuery } from 'views/Room/RoomContainer'
 import classnames from 'classnames'
 import md5 from 'md5'
 
+type DropareaProps = {
+  message?: string,
+  mutate: Function,
+  roomName: string
+}
+
 class Droparea extends Component {
+  props: DropareaProps
+
   state = {
     isDragOver: false
   }

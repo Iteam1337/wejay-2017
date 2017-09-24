@@ -2,14 +2,44 @@
 
 import './Room.css'
 import React, { Component } from 'react'
-import { gql, graphql } from 'react-apollo'
+import { queueUpdated, onNextTrack } from './RoomContainer'
+import { gql } from 'react-apollo'
 import Cover from 'components/Cover'
 import Droparea from 'components/Droparea'
 import Gravatar from 'components/Gravatar'
 import Queue from 'components/Queue'
 import Users from 'components/Users'
 
-export class Room extends Component {
+type RoomProps = {
+  data: {
+    subscribeToMore: Function,
+    error?: { message: string },
+    loading: boolean,
+    room: {
+      currentTrack: {
+        artists: {
+          name: string
+        }[],
+        name: string,
+        user: {
+          id: string
+        }
+      },
+      name: string,
+      queue: {}[],
+      users: {}[]
+    }
+  },
+  match: {
+    params: {
+      name: string
+    }
+  }
+}
+
+export default class Room extends Component {
+  props: RoomProps
+
   componentWillMount () {
     this.props.data.subscribeToMore({
       document: queueUpdated,
@@ -121,46 +151,3 @@ Room.fragments = {
     }
   `
 }
-
-export const roomQuery = gql`
-  query RoomQuery($name: String!) {
-    room(name: $name) {
-      currentTrack {
-        ...TrackInfo
-      }
-      name
-      users {
-        email
-        id
-      }
-      queue {
-        ...TrackInfo
-      }
-    }
-  }
-  ${Room.fragments.track}
-`
-
-const queueUpdated = gql`
-  subscription queueUpdated($roomName: String!) {
-    queueUpdated(roomName: $roomName) {
-      ...TrackInfo
-    }
-  }
-  ${Room.fragments.track}
-  `
-
-const onNextTrack = gql`
-  subscription onNextTrack($roomName: String!) {
-    onNextTrack(roomName: $roomName) {
-      ...TrackInfo
-    }
-  }
-  ${Room.fragments.track}
-`
-
-export default graphql(roomQuery, {
-  options: props => ({
-    variables: { name: props.match.params.name }
-  })
-})(Room)

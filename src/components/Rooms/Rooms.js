@@ -5,8 +5,20 @@ import React, { Component } from 'react'
 import { gql, graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
 
+type RoomsProps = {
+  history: {
+    push: Function
+  },
+  mutate: Function,
+  rooms: {
+    name: string
+  }[]
+}
+
 export class Rooms extends Component {
-  joinRoom = async name => {
+  props: RoomsProps
+
+  joinRoom = async (name: string) => {
     if (!localStorage.getItem('user')) {
       return
     }

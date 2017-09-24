@@ -7,7 +7,12 @@ import AddRoom from './AddRoom'
 import { gql, graphql } from 'react-apollo'
 
 type StartProps = {
-  data: {}
+  data: {
+    subscribeToMore: Function,
+    error?: { message: string },
+    loading: boolean,
+    rooms: {}[]
+  }
 }
 
 type StartState = {
@@ -15,7 +20,10 @@ type StartState = {
   hasUser: boolean
 }
 
-export class Start extends Component<StartProps, StartState> {
+export class Start extends Component {
+  props: StartProps
+  state: StartState
+
   state = {
     user: '',
     hasUser: false
@@ -38,7 +46,7 @@ export class Start extends Component<StartProps, StartState> {
     }))
   }
 
-  updateEmail = event => {
+  updateEmail = (event: { target: { value: string } }) => {
     this.setState({
       user: event.target.value
     })
@@ -78,7 +86,7 @@ export class Start extends Component<StartProps, StartState> {
             )}
             {hasUser && (
               <div>
-                <Rooms joinRoom={this.joinRoom} rooms={rooms} />
+                <Rooms rooms={rooms} />
                 <hr className="Start__separator" />
                 <AddRoom />
               </div>
