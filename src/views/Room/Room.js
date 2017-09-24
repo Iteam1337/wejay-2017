@@ -40,6 +40,32 @@ type RoomProps = {
 export default class Room extends Component {
   props: RoomProps
 
+  static fragments = {
+    track: gql`
+      fragment TrackInfo on Track {
+        album {
+          images {
+            height
+            url
+            width
+          }
+          name
+        }
+        artists {
+          name
+        }
+        duration
+        name
+        spotifyUri
+        started
+        user {
+          email
+          id
+        }
+      }
+    `
+  }
+
   componentWillMount () {
     this.props.data.subscribeToMore({
       document: queueUpdated,
@@ -124,30 +150,4 @@ export default class Room extends Component {
       </div>
     )
   }
-}
-
-Room.fragments = {
-  track: gql`
-    fragment TrackInfo on Track {
-      album {
-        images {
-          height
-          url
-          width
-        }
-        name
-      }
-      artists {
-        name
-      }
-      duration
-      name
-      spotifyUri
-      started
-      user {
-        email
-        id
-      }
-    }
-  `
 }
