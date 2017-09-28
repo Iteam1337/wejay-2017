@@ -11,18 +11,13 @@ exports[`components/Start renders Start 1`] = `
       className="Start__rooms"
     >
       <div>
-        <input
-          className="Input"
-          onChange={[Function]}
-          placeholder="E-mail"
+        <withRouter(Apollo(Rooms))
+          rooms={Array []}
         />
-        <button
-          className="Rooms__button"
-          disabled={true}
-          onClick={[Function]}
-        >
-          Save user
-        </button>
+        <hr
+          className="Start__separator"
+        />
+        <Apollo(AddRoom) />
       </div>
     </div>
   </div>

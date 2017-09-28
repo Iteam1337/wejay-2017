@@ -6,6 +6,7 @@ exports[`components/Rooms renders Rooms 1`] = `
 >
   <li
     className="Rooms__room"
+    key="room-0"
   >
     <button
       className="Rooms__button"

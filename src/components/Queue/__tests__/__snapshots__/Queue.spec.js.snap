@@ -5,6 +5,7 @@ exports[`components/Queue can render 1`] = `
   className="Queue"
 >
   <Track
+    key="1337"
     track={
       Object {
         "name": "Circles",

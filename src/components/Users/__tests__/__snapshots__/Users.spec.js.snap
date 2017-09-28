@@ -6,6 +6,7 @@ exports[`components/Users renders Users and filters users without play and no pl
 >
   <li
     className="Users__user"
+    key="3"
   >
     <Gravatar
       email="big@bird.com"
@@ -24,6 +25,7 @@ exports[`components/Users renders Users and filters users without play and no pl
   </li>
   <li
     className="Users__user"
+    key="3"
   >
     <Gravatar
       email="big@bird.com"
