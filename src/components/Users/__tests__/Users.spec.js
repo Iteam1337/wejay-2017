@@ -34,6 +34,6 @@ describe('components/Users', () => {
   })
 
   it('renders Users and filters users without play and no plays in the last hour', () => {
-    expect(component).toMatchSnapshot()
+    expect(component.find('.Users__user')).toHaveLength(2)
   })
 })
