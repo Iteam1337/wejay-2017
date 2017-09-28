@@ -16,7 +16,7 @@ exports[`components/Room renders Room 1`] = `
       >
         Now Playing
       </h2>
-      <Component
+      <NowPlaying
         track={
           Object {
             "artists": Array [
@@ -34,29 +34,6 @@ exports[`components/Room renders Room 1`] = `
           }
         }
       />
-      <div
-        className="Room__now-playing"
-      >
-        <div
-          className="Room__now-playing-track"
-        >
-          <div
-            className="Track__artist"
-          >
-            artist, artist two
-          </div>
-          <div
-            className="Track__name"
-          >
-            track
-          </div>
-        </div>
-        <Gravatar
-          email=""
-          id="1337"
-          size={30}
-        />
-      </div>
     </div>
     <div
       className="Room__content"
@@ -81,35 +58,24 @@ exports[`components/Room renders Room 1`] = `
       />
     </div>
   </div>
-  <PositionTracker
-    track={
-      Object {
-        "artists": Array [
-          Object {
-            "name": "artist",
-          },
-          Object {
-            "name": "artist two",
-          },
-        ],
-        "name": "track",
-        "user": Object {
-          "id": "1337",
-        },
-      }
-    }
-  />
 </div>
 `;
 
 exports[`components/Room renders a loading message 1`] = `
-<div>
+<div
+  className="Loading"
+>
   Loading
+  <div
+    className="Loader"
+  />
 </div>
 `;
 
 exports[`components/Room renders error message 1`] = `
-<div>
+<div
+  className="Error"
+>
   Error
 </div>
 `;

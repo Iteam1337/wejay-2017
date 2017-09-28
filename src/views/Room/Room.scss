@@ -32,3 +32,32 @@
 .Room__now-playing-track {
   flex: 1;
 }
+
+.Loading {
+  align-items: center;
+  color: #2a2a48;
+  display: flex;
+  flex-direction: column;
+  font-size: 32px;
+  height: 100vh;
+  justify-content: center;
+}
+
+.Loader {
+  animation: 2s pending alternate-reverse infinite;
+  background: #afafc7;
+  border-radius: 2px;
+  display: block;
+  height: 5px;
+  margin-top: 20px;
+  width: 200px;
+}
+
+.Error {
+  align-items: center;
+  color: #fe678d;
+  display: flex;
+  font-size: 32px;
+  height: 100vh;
+  justify-content: center;
+}

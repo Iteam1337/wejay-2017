@@ -3,12 +3,10 @@
 import './Room.css'
 import React, { Component } from 'react'
 import { gql, graphql } from 'react-apollo'
-import Cover from 'components/Cover'
+import NowPlaying from './NowPlaying/NowPlaying'
 import Droparea from 'components/Droparea'
-import Gravatar from 'components/Gravatar'
 import Queue from 'components/Queue'
 import Users from 'components/Users'
-import PositionTracker from 'components/Position'
 
 type RoomProps = {
   data: {
@@ -108,11 +106,16 @@ export class Room extends Component {
     const { data: { error, loading, room } } = this.props
 
     if (loading) {
-      return <div>Loading</div>
+      return (
+        <div className="Loading">
+          Loading
+          <div className="Loader" />
+        </div>
+      )
     }
 
     if (error) {
-      return <div>{error.message}</div>
+      return <div className="Error">{error.message}</div>
     }
 
     return (
@@ -121,18 +124,7 @@ export class Room extends Component {
         <div className="Room">
           <div className="Room__cover">
             <h2 className="Room__title">Now Playing</h2>
-            {room.currentTrack && <Cover track={room.currentTrack} />}
-            {room.currentTrack && (
-              <div className="Room__now-playing">
-                <div className="Room__now-playing-track">
-                  <div className="Track__artist">
-                    {room.currentTrack.artists.map(t => t.name).join(', ')}
-                  </div>
-                  <div className="Track__name">{room.currentTrack.name}</div>
-                </div>
-                <Gravatar id={room.currentTrack.user.id} size={30} />
-              </div>
-            )}
+            <NowPlaying track={room.currentTrack} />
           </div>
           <div className="Room__content">
             <h2 className="Room__title">Queue</h2>
@@ -143,7 +135,6 @@ export class Room extends Component {
             <Users users={room.users} />
           </div>
         </div>
-        {room.currentTrack && <PositionTracker track={room.currentTrack} />}
       </div>
     )
   }
