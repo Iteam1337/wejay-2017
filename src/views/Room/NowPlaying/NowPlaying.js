@@ -1,9 +1,23 @@
+// @flow
+
 import React from 'react'
 import Cover from 'components/Cover'
 import Gravatar from 'components/Gravatar'
 import PositionTracker from 'components/Position'
 
-const NowPlaying = ({ track }) => {
+type NowPlayingProps = {
+  track: {
+    artists: {
+      name: string
+    }[],
+    name: string,
+    user: {
+      id: string
+    }
+  }
+}
+
+const NowPlaying = ({ track }: NowPlayingProps) => {
   if (!track) {
     return null
   }

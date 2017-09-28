@@ -15,9 +15,7 @@ type RoomsProps = {
   }[]
 }
 
-export class Rooms extends Component {
-  props: RoomsProps
-
+export class Rooms extends Component<RoomsProps> {
   joinRoom = async (name: string) => {
     if (!localStorage.getItem('user')) {
       return

@@ -35,8 +35,10 @@ type RoomProps = {
   }
 }
 
-export class Room extends Component {
-  props: RoomProps
+export class Room extends Component<RoomProps> {
+  static fragments: {
+    track: string
+  }
 
   componentWillMount () {
     const roomName = this.props.match.params.name
