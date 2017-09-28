@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/NowPlaying renders NowPlaying 1`] = `
+<div>
+  <Component
+    track={
+      Object {
+        "artists": Array [
+          Object {
+            "name": "artist one",
+          },
+          Object {
+            "name": "artist two",
+          },
+        ],
+        "user": Object {
+          "id": "1337",
+        },
+      }
+    }
+  />
+  <div
+    className="Room__now-playing"
+  >
+    <div
+      className="Room__now-playing-track"
+    >
+      <div
+        className="Track__artist"
+      >
+        artist one, artist two
+      </div>
+      <div
+        className="Track__name"
+      />
+    </div>
+    <Gravatar
+      email=""
+      id="1337"
+      size={30}
+    />
+  </div>
+  <PositionTracker
+    track={
+      Object {
+        "artists": Array [
+          Object {
+            "name": "artist one",
+          },
+          Object {
+            "name": "artist two",
+          },
+        ],
+        "user": Object {
+          "id": "1337",
+        },
+      }
+    }
+  />
+</div>
+`;
