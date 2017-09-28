@@ -32,6 +32,14 @@ describe('components/Rooms', () => {
     expect(toJson(component)).toMatchSnapshot()
   })
 
+  it('should handle button clicks', () => {
+    const button = component.find('button')
+
+    button.simulate('click')
+
+    expect(mutate).toBeCalled()
+  })
+
   describe('#joinRoom', () => {
     it('returns if no user is set', () => {
       localStorage.getItem.mockReturnValue(null)
