@@ -21,6 +21,10 @@ describe('components/Users', () => {
     )
   })
 
+  afterEach(() => {
+    mockdate.reset()
+  })
+
   it('returns null if no users', () => {
     component.setProps({
       users: []
