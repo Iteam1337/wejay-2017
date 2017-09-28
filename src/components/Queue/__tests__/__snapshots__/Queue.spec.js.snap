@@ -14,3 +14,11 @@ exports[`components/Queue can render 1`] = `
   />
 </ul>
 `;
+
+exports[`components/Queue should display empty state when no queue 1`] = `
+<div
+  className="EmptyState"
+>
+  Queue is empty
+</div>
+`;

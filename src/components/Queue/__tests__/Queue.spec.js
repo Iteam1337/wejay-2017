@@ -1,6 +1,5 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
 import Queue from '../Queue'
 
 describe('components/Queue', () => {
@@ -20,6 +19,14 @@ describe('components/Queue', () => {
   })
 
   it('can render', () => {
-    expect(toJson(component)).toMatchSnapshot()
+    expect(component).toMatchSnapshot()
+  })
+
+  it('should display empty state when no queue', () => {
+    component.setProps({
+      tracks: []
+    })
+
+    expect(component.find('.EmptyState')).toMatchSnapshot()
   })
 })
