@@ -81,6 +81,24 @@ exports[`components/Room renders Room 1`] = `
       />
     </div>
   </div>
+  <PositionTracker
+    track={
+      Object {
+        "artists": Array [
+          Object {
+            "name": "artist",
+          },
+          Object {
+            "name": "artist two",
+          },
+        ],
+        "name": "track",
+        "user": Object {
+          "id": "1337",
+        },
+      }
+    }
+  />
 </div>
 `;
 

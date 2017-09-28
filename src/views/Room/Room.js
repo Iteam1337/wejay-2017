@@ -8,6 +8,7 @@ import Droparea from 'components/Droparea'
 import Gravatar from 'components/Gravatar'
 import Queue from 'components/Queue'
 import Users from 'components/Users'
+import PositionTracker from 'components/Position'
 
 type RoomProps = {
   data: {
@@ -40,10 +41,12 @@ export class Room extends Component {
   props: RoomProps
 
   componentWillMount () {
+    const roomName = this.props.match.params.name
+
     this.props.data.subscribeToMore({
       document: queueUpdated,
       variables: {
-        roomName: this.props.match.params.name
+        roomName
       },
       updateQuery: (prev, { subscriptionData }) => {
         if (!subscriptionData.data) {
@@ -63,7 +66,7 @@ export class Room extends Component {
     this.props.data.subscribeToMore({
       document: onNextTrack,
       variables: {
-        roomName: this.props.match.params.name
+        roomName
       },
       updateQuery: (prev, { subscriptionData }) => {
         if (!subscriptionData.data) {
@@ -75,6 +78,26 @@ export class Room extends Component {
           room: {
             ...prev.room,
             currentTrack: subscriptionData.data.onNextTrack
+          }
+        }
+      }
+    })
+
+    this.props.data.subscribeToMore({
+      document: usersUpdated,
+      variables: {
+        roomName
+      },
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) {
+          return prev
+        }
+
+        return {
+          ...prev,
+          room: {
+            ...prev.room,
+            users: subscriptionData.data.usersUpdated
           }
         }
       }
@@ -120,6 +143,7 @@ export class Room extends Component {
             <Users users={room.users} />
           </div>
         </div>
+        {room.currentTrack && <PositionTracker track={room.currentTrack} />}
       </div>
     )
   }
@@ -152,40 +176,51 @@ Room.fragments = {
 }
 
 export const roomQuery = gql`
-query RoomQuery($name: String!) {
-  room(name: $name) {
-    currentTrack {
-      ...TrackInfo
-    }
-    name
-    users {
-      email
-      id
-    }
-    queue {
-      ...TrackInfo
+  query RoomQuery($name: String!) {
+    room(name: $name) {
+      currentTrack {
+        ...TrackInfo
+      }
+      name
+      users {
+        email
+        id
+        lastPlay
+      }
+      queue {
+        ...TrackInfo
+      }
     }
   }
-}
-${Room.fragments.track}
+  ${Room.fragments.track}
 `
 
 export const queueUpdated = gql`
-subscription queueUpdated($roomName: String!) {
-  queueUpdated(roomName: $roomName) {
-    ...TrackInfo
+  subscription queueUpdated($roomName: String!) {
+    queueUpdated(roomName: $roomName) {
+      ...TrackInfo
+    }
   }
-}
-${Room.fragments.track}
+  ${Room.fragments.track}
 `
 
 export const onNextTrack = gql`
-subscription onNextTrack($roomName: String!) {
-  onNextTrack(roomName: $roomName) {
-    ...TrackInfo
+  subscription onNextTrack($roomName: String!) {
+    onNextTrack(roomName: $roomName) {
+      ...TrackInfo
+    }
   }
-}
-${Room.fragments.track}
+  ${Room.fragments.track}
+`
+
+export const usersUpdated = gql`
+  subscription usersUpdated($roomName: String!) {
+    usersUpdated(roomName: $roomName) {
+      email
+      id
+      lastPlay
+    }
+  }
 `
 
 export default graphql(roomQuery, {
