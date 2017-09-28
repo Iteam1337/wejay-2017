@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components/Users renders Users 1`] = `
+exports[`components/Users renders Users and filters users without play and no plays in the last hour 1`] = `
 <ul
   className="Users"
 >
@@ -8,13 +8,36 @@ exports[`components/Users renders Users 1`] = `
     className="Users__user"
   >
     <Gravatar
-      email="cookie@monster.com"
+      email="big@bird.com"
       size={30}
     />
     <div
       className="Users__email"
     >
-      cookie@monster.com
+      big@bird.com
+    </div>
+    <div
+      className="Users__lastPlay"
+    >
+      in 2 hours
+    </div>
+  </li>
+  <li
+    className="Users__user"
+  >
+    <Gravatar
+      email="big@bird.com"
+      size={30}
+    />
+    <div
+      className="Users__email"
+    >
+      big@bird.com
+    </div>
+    <div
+      className="Users__lastPlay"
+    >
+      in 2 hours
     </div>
   </li>
 </ul>
