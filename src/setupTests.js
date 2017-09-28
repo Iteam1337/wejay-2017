@@ -1,3 +1,7 @@
+import serializer from 'enzyme-to-json/serializer'
+
+expect.addSnapshotSerializer(serializer)
+
 // Mock localStorage
 const localStorageMock = {
   getItem: jest.fn(param => param),
