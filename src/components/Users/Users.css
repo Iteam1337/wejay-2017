@@ -13,4 +13,10 @@
 .Users__email {
   color: #666;
   flex: 1;
-  margin-left: 20px; }
+  margin-left: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+
+.Users__lastPlay {
+  font-size: 12px; }

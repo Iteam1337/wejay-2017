@@ -1,6 +1,5 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
 import { Start } from '../Start'
 
 describe('components/Start', () => {
@@ -20,7 +19,47 @@ describe('components/Start', () => {
   })
 
   it('renders loading message', () => {
-    expect(toJson(component)).toMatchSnapshot()
+    expect(component).toMatchSnapshot()
+  })
+
+  it('renders error message', () => {
+    component.setProps({
+      data: {
+        error: {
+          message: 'error'
+        }
+      }
+    })
+
+    expect(component).toMatchSnapshot()
+  })
+
+  it('renders Start', () => {
+    component.setProps({
+      data: {
+        loading: false,
+        error: null,
+        rooms: []
+      }
+    })
+
+    expect(component).toMatchSnapshot()
+  })
+
+  it('renders Start if user is set', () => {
+    component.setProps({
+      data: {
+        loading: false,
+        error: null,
+        rooms: []
+      }
+    })
+
+    component.setState({
+      hasUser: true
+    })
+
+    expect(component).toMatchSnapshot()
   })
 
   describe('#saveEmail', () => {

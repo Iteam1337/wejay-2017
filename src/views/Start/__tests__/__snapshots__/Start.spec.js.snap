@@ -1,5 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`components/Start renders Start 1`] = `
+<div
+  className="Start"
+>
+  <div
+    className="Start__content"
+  >
+    <div
+      className="Start__rooms"
+    >
+      <div>
+        <input
+          className="Input"
+          onChange={[Function]}
+          placeholder="E-mail"
+        />
+        <button
+          className="Rooms__button"
+          disabled={true}
+          onClick={[Function]}
+        >
+          Save user
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components/Start renders Start if user is set 1`] = `
+<div
+  className="Start"
+>
+  <div
+    className="Start__content"
+  >
+    <div
+      className="Start__rooms"
+    >
+      <div>
+        <withRouter(Apollo(Rooms))
+          rooms={Array []}
+        />
+        <hr
+          className="Start__separator"
+        />
+        <Apollo(AddRoom) />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`components/Start renders error message 1`] = `
+<div>
+  error
+</div>
+`;
+
 exports[`components/Start renders loading message 1`] = `
 <div>
   Loading
