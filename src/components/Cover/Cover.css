@@ -29,18 +29,14 @@
   border-radius: 4px; }
 
 .Position {
-  height: 310px;
-  left: -5px;
-  position: absolute;
-  top: -5px;
-  width: 310px; }
+  bottom: 0;
+  left: 0;
+  height: 5px;
+  position: fixed;
+  right: 0; }
 
-.shape {
-  stroke-dasharray: 1500;
-  stroke-dashoffset: 1500;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 5px;
-  fill: transparent;
-  stroke: rgba(255, 134, 0, 0.4);
-  transition: stroke-dashoffset 100ms ease-in-out; }
+.Position__bar {
+  background: rgba(255, 134, 0, 0.4);
+  border-radius: 0 2px 0 0;
+  height: 5px;
+  transition: width 100ms ease-in-out; }

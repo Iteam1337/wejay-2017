@@ -1,7 +1,6 @@
 import './Cover.css'
 import React from 'react'
 import classnames from 'classnames'
-import Position from './Position'
 
 type CoverProps = {
   album: {
@@ -22,7 +21,6 @@ export const Cover = ({ track, small, width }: CoverProps) => {
 
   return (
     <div className="Cover">
-      {!small && <Position track={track} />}
       <img
         alt="Album cover"
         className="Cover__image"

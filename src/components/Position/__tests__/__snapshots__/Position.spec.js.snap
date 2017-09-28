@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Position renders Position 1`] = `
+<div
+  className="Position"
+>
+  <div
+    className="Position__bar"
+    style={
+      Object {
+        "width": "0%",
+      }
+    }
+  />
+</div>
+`;
