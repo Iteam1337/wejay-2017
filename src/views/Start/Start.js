@@ -20,10 +20,7 @@ type StartState = {
   hasUser: boolean
 }
 
-export class Start extends Component {
-  props: StartProps
-  state: StartState
-
+export class Start extends Component<StartProps, StartState> {
   state = {
     user: '',
     hasUser: false
@@ -57,11 +54,11 @@ export class Start extends Component {
     const { hasUser, user } = this.state
 
     if (loading) {
-      return <div>Loading</div>
+      return <div className="Loader">Loading</div>
     }
 
     if (error) {
-      return <div>{error.message}</div>
+      return <div className="Error">{error.message}</div>
     }
 
     return (
