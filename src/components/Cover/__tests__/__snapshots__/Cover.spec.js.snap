@@ -4,19 +4,6 @@ exports[`components/Cover renders Cover 1`] = `
 <div
   className="Cover"
 >
-  <Position
-    track={
-      Object {
-        "album": Object {
-          "images": Array [
-            Object {
-              "url": "test.png",
-            },
-          ],
-        },
-      }
-    }
-  />
   <img
     alt="Album cover"
     className="Cover__image"
