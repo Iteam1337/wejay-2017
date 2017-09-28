@@ -11,14 +11,14 @@ type DropareaProps = {
   roomName: string
 }
 
-class Droparea extends Component {
+export class Droparea extends Component {
   props: DropareaProps
 
   state = {
     isDragOver: false
   }
 
-  _onDragEnter = e => {
+  onDragEnter = e => {
     if (e) {
       e.preventDefault()
     }
@@ -28,7 +28,7 @@ class Droparea extends Component {
     })
   }
 
-  _onDragLeave = e => {
+  onDragLeave = e => {
     if (e) {
       e.preventDefault()
     }
@@ -124,8 +124,8 @@ class Droparea extends Component {
             'Droparea--is-dragging': this.state.isDragOver
           })}
           defaultValue={this.props.message}
-          onDragEnter={this._onDragEnter}
-          onDragLeave={this._onDragLeave}
+          onDragEnter={this.onDragEnter}
+          onDragLeave={this.onDragLeave}
           onDrop={this._onDrop}
           spellCheck={false}
         />
