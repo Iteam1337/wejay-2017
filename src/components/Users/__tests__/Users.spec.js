@@ -7,7 +7,7 @@ describe('components/Users', () => {
   let component
 
   beforeEach(() => {
-    mockdate.set('2017-09-28 12:00')
+    mockdate.set('2017-09-28T12:00:00.000Z')
 
     component = shallow(
       <Users

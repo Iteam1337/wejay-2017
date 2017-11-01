@@ -20,7 +20,7 @@ exports[`components/Users renders correctly 1`] = `
     <div
       className="Users__lastPlay"
     >
-      about 2 hours ago
+      in 2 minutes
     </div>
   </li>
   <li
@@ -39,7 +39,7 @@ exports[`components/Users renders correctly 1`] = `
     <div
       className="Users__lastPlay"
     >
-      about 2 hours ago
+      in 2 minutes
     </div>
   </li>
 </ul>
