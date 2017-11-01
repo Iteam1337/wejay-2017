@@ -4,7 +4,7 @@ exports[`components/Queue can render 1`] = `
 <ul
   className="Queue"
 >
-  <Track
+  <TrackItem
     key="1337"
     track={
       Object {

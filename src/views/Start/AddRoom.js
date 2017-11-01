@@ -1,26 +1,37 @@
+// @flow
+
 import React, { Component } from 'react'
 import { gql, graphql } from 'react-apollo'
 import { startQuery } from './Start'
 
-export class AddRoom extends Component {
+type Props = {
+  mutate: Function
+}
+
+type State = {
+  roomName: string
+}
+
+export class AddRoom extends Component<Props, State> {
   state = {
-    roomName: ''
+    roomName: '',
   }
 
-  addRoom = event => {
+  addRoom = (event: SyntheticInputEvent<HTMLFormElement>) => {
     event.preventDefault()
+
     const { mutate } = this.props
     const { roomName } = this.state
 
     mutate({
       variables: {
-        roomName
+        roomName,
       },
       optimisticResponse: {
         addRoom: {
           name: roomName,
-          __typename: 'Room'
-        }
+          __typename: 'Room',
+        },
       },
       update: (store, { data: { addRoom } }) => {
         const data = store.readQuery({ query: startQuery })
@@ -28,17 +39,17 @@ export class AddRoom extends Component {
         data.rooms.push(addRoom)
 
         store.writeQuery({ query: startQuery, data })
-      }
+      },
     })
 
     this.setState({
-      roomName: ''
+      roomName: '',
     })
   }
 
-  updateRoomName = event => {
+  updateRoomName = (event: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({
-      roomName: event.target.value
+      roomName: event.target.value,
     })
   }
 
@@ -53,7 +64,7 @@ export class AddRoom extends Component {
             onChange={this.updateRoomName}
             placeholder="Room name"
             type="text"
-            value={this.state.roomname}
+            value={this.state.roomName}
           />
           <button
             className="Rooms__button"

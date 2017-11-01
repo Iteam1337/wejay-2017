@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Users renders correctly 1`] = `
+<ul
+  className="Users"
+>
+  <li
+    className="Users__user"
+    key="3"
+  >
+    <Gravatar
+      email="big@bird.com"
+      size={30}
+    />
+    <div
+      className="Users__email"
+    >
+      big@bird.com
+    </div>
+    <div
+      className="Users__lastPlay"
+    >
+      about 2 hours ago
+    </div>
+  </li>
+  <li
+    className="Users__user"
+    key="4"
+  >
+    <Gravatar
+      email="oscar@grouch.com"
+      size={30}
+    />
+    <div
+      className="Users__email"
+    >
+      oscar@grouch.com
+    </div>
+    <div
+      className="Users__lastPlay"
+    >
+      about 2 hours ago
+    </div>
+  </li>
+</ul>
+`;

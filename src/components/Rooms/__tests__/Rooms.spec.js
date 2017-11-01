@@ -22,7 +22,7 @@ describe('components/Rooms', () => {
 
   it('returns empty state if no rooms', () => {
     component.setProps({
-      rooms: []
+      rooms: [],
     })
 
     expect(toJson(component)).toMatchSnapshot()
@@ -58,9 +58,9 @@ describe('components/Rooms', () => {
         variables: {
           input: {
             roomName: 'test',
-            email: 'cookie@monster.com'
-          }
-        }
+            email: 'cookie@monster.com',
+          },
+        },
       })
     })
 

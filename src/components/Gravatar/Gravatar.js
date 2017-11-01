@@ -35,7 +35,7 @@ const Gravatar = ({ className, email, id, alt, size }: GravatarProps) => {
 }
 
 Gravatar.defaultProps = {
-  email: ''
+  email: '',
 }
 
 export default Gravatar

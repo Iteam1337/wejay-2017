@@ -1,18 +1,17 @@
+// @flow
+
 import './Cover.css'
 import React from 'react'
 import classnames from 'classnames'
+import type { Track } from 'models/models'
 
-type CoverProps = {
-  album: {
-    images: {
-      url: string
-    }[]
-  }[],
+type Props = {
   small: boolean,
+  track: Track,
   width?: number
 }
 
-export const Cover = ({ track, small, width }: CoverProps) => {
+export const Cover = ({ track, small, width }: Props) => {
   if (!track.album.images || track.album.images.length === 0) {
     return (
       <div className="Cover__temp" style={{ height: width, width: width }} />
@@ -30,7 +29,7 @@ export const Cover = ({ track, small, width }: CoverProps) => {
       <img
         alt="Album cover"
         className={classnames('Cover__shadow', {
-          'Cover__shadow--small': small
+          'Cover__shadow--small': small,
         })}
         src={track.album.images[0].url}
         style={{ width: width }}

@@ -6,22 +6,23 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import {
   ApolloClient,
   ApolloProvider,
-  createNetworkInterface
+  createNetworkInterface,
 } from 'react-apollo'
 import {
   SubscriptionClient,
-  addGraphQLSubscriptions
+  addGraphQLSubscriptions,
 } from 'subscriptions-transport-ws'
+import asyncComponent from './asyncComponent'
 
-import Start from './views/Start'
-import Room from './views/Room'
+const StartAsync = asyncComponent(() => import('./views/Start'))
+const RoomAsync = asyncComponent(() => import('./views/Room'))
 
 const networkInterface = createNetworkInterface({
-  uri: process.env.REACT_APP_GRAPHQL_URL
+  uri: process.env.REACT_APP_GRAPHQL_URL,
 })
 
 const wsClient = new SubscriptionClient(process.env.REACT_APP_SUB_URL, {
-  reconnect: true
+  reconnect: true,
 })
 
 const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
@@ -30,7 +31,7 @@ const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
 )
 
 const client = new ApolloClient({
-  networkInterface: networkInterfaceWithSubscriptions
+  networkInterface: networkInterfaceWithSubscriptions,
 })
 
 const AppRoot = () => {
@@ -38,8 +39,8 @@ const AppRoot = () => {
     <ApolloProvider client={client}>
       <BrowserRouter>
         <div>
-          <Route exact path="/" component={Start} />
-          <Route exact path="/room/:name" component={Room} />
+          <Route exact path="/" component={StartAsync} />
+          <Route exact path="/room/:name" component={RoomAsync} />
         </div>
       </BrowserRouter>
     </ApolloProvider>

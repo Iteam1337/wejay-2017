@@ -25,8 +25,8 @@ export class Rooms extends Component<RoomsProps> {
 
     await mutate({
       variables: {
-        input: { roomName: name, email: localStorage.getItem('user') }
-      }
+        input: { roomName: name, email: localStorage.getItem('user') },
+      },
     })
 
     this.props.history.push(`/room/${name}`)

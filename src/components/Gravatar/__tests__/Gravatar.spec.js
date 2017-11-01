@@ -21,7 +21,7 @@ describe('components/Gravatar', () => {
   it('renders Gravatar using id', () => {
     component.setProps({
       id: '123',
-      email: undefined
+      email: undefined,
     })
 
     expect(toJson(component)).toMatchSnapshot()

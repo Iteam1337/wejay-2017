@@ -10,7 +10,7 @@ describe('components/Start', () => {
     component = shallow(
       <Start
         data={{
-          loading: true
+          loading: true,
         }}
       />
     )
@@ -26,9 +26,9 @@ describe('components/Start', () => {
     component.setProps({
       data: {
         error: {
-          message: 'error'
-        }
-      }
+          message: 'error',
+        },
+      },
     })
 
     expect(component).toMatchSnapshot()
@@ -39,8 +39,8 @@ describe('components/Start', () => {
       data: {
         loading: false,
         error: null,
-        rooms: []
-      }
+        rooms: [],
+      },
     })
 
     expect(component).toMatchSnapshot()
@@ -51,12 +51,12 @@ describe('components/Start', () => {
       data: {
         loading: false,
         error: null,
-        rooms: []
-      }
+        rooms: [],
+      },
     })
 
     component.setState({
-      hasUser: true
+      hasUser: true,
     })
 
     expect(component).toMatchSnapshot()
@@ -65,7 +65,7 @@ describe('components/Start', () => {
   describe('#saveEmail', () => {
     it('saves email to localStorage', () => {
       component.setState({
-        user: 'cookie@monster.com'
+        user: 'cookie@monster.com',
       })
 
       instance.saveEmail()
@@ -78,7 +78,7 @@ describe('components/Start', () => {
 
     it('sets has user to true', () => {
       component.setState({
-        user: 'cookie@monster.com'
+        user: 'cookie@monster.com',
       })
 
       instance.saveEmail()
@@ -91,8 +91,8 @@ describe('components/Start', () => {
     it('sets email on state', () => {
       const event = {
         target: {
-          value: 'cookie@monster.com'
-        }
+          value: 'cookie@monster.com',
+        },
       }
 
       instance.updateEmail(event)

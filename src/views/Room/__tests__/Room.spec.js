@@ -16,14 +16,14 @@ describe('components/Room', () => {
           artists: [{ name: 'artist' }, { name: 'artist two' }],
           name: 'track',
           user: {
-            id: '1337'
-          }
+            id: '1337',
+          },
         },
         name: 'test',
         queue: [],
-        users: []
+        users: [],
       },
-      subscribeToMore: jest.fn()
+      subscribeToMore: jest.fn(),
     }
 
     component = shallow(
@@ -31,8 +31,8 @@ describe('components/Room', () => {
         data={data}
         match={{
           params: {
-            name: 'test'
-          }
+            name: 'test',
+          },
         }}
       />
     )
@@ -42,8 +42,8 @@ describe('components/Room', () => {
     component.setProps({
       data: {
         ...data,
-        loading: true
-      }
+        loading: true,
+      },
     })
 
     expect(toJson(component)).toMatchSnapshot()
@@ -54,9 +54,9 @@ describe('components/Room', () => {
       data: {
         ...data,
         error: {
-          message: 'Error'
-        }
-      }
+          message: 'Error',
+        },
+      },
     })
 
     expect(toJson(component)).toMatchSnapshot()

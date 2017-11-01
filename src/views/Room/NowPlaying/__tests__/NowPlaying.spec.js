@@ -11,8 +11,8 @@ describe('components/NowPlaying', () => {
         track={{
           artists: [{ name: 'artist one' }, { name: 'artist two' }],
           user: {
-            id: '1337'
-          }
+            id: '1337',
+          },
         }}
       />
     )
@@ -20,7 +20,7 @@ describe('components/NowPlaying', () => {
 
   it('should return null if no track is provided', () => {
     component.setProps({
-      track: null
+      track: null,
     })
 
     expect(component.type()).toBeNull()

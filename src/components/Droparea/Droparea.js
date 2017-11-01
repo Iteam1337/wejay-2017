@@ -1,3 +1,5 @@
+// @flow
+
 import './Droparea.css'
 import React, { Component } from 'react'
 import { gql, graphql } from 'react-apollo'
@@ -5,40 +7,46 @@ import { roomQuery } from 'views/Room/Room'
 import classnames from 'classnames'
 import md5 from 'md5'
 
-type DropareaProps = {
+type Props = {
   message?: string,
   mutate: Function,
   roomName: string
 }
 
-export class Droparea extends Component {
-  props: DropareaProps
+type State = {
+  isDragOver: boolean
+}
+
+export class Droparea extends Component<Props, State> {
+  static defaultProps = {
+    message: 'Drop it like it\'s hot!',
+  }
 
   state = {
-    isDragOver: false
+    isDragOver: false,
   }
 
-  onDragEnter = e => {
+  onDragEnter = (e: SyntheticDragEvent<HTMLTextAreaElement>) => {
     if (e) {
       e.preventDefault()
     }
 
     this.setState({
-      isDragOver: true
+      isDragOver: true,
     })
   }
 
-  onDragLeave = e => {
+  onDragLeave = (e: SyntheticDragEvent<HTMLTextAreaElement>) => {
     if (e) {
       e.preventDefault()
     }
 
     this.setState({
-      isDragOver: false
+      isDragOver: false,
     })
   }
 
-  _onDrop = e => {
+  _onDrop = (e: SyntheticDragEvent<HTMLTextAreaElement>) => {
     const { mutate, roomName } = this.props
     const userId = md5(localStorage.getItem('user'))
 
@@ -56,8 +64,8 @@ export class Droparea extends Component {
           input: {
             roomName,
             userId,
-            spotifyId: track
-          }
+            spotifyId: track,
+          },
         },
         optimisticResponse: {
           queueTrack: {
@@ -65,8 +73,8 @@ export class Droparea extends Component {
             artists: [
               {
                 name: 'Loading',
-                __typename: 'Artist'
-              }
+                __typename: 'Artist',
+              },
             ],
             duration: 0,
             name: 'Awesome track',
@@ -75,17 +83,17 @@ export class Droparea extends Component {
             user: {
               email: '',
               id: userId,
-              __typename: 'User'
+              __typename: 'User',
             },
-            __typename: 'Track'
-          }
+            __typename: 'Track',
+          },
         },
         update: (store, { data: { queueTrack } }) => {
           const data = store.readQuery({
             query: roomQuery,
             variables: {
-              name: roomName
-            }
+              name: roomName,
+            },
           })
 
           const exists = data.room.queue.find(
@@ -103,16 +111,16 @@ export class Droparea extends Component {
           store.writeQuery({
             query: roomQuery,
             variables: {
-              name: roomName
+              name: roomName,
             },
-            data
+            data,
           })
-        }
+        },
       })
     })
 
     this.setState({
-      isDragOver: false
+      isDragOver: false,
     })
   }
 
@@ -121,7 +129,7 @@ export class Droparea extends Component {
       <div className="Droparea__wrap">
         <textarea
           className={classnames('Droparea', {
-            'Droparea--is-dragging': this.state.isDragOver
+            'Droparea--is-dragging': this.state.isDragOver,
           })}
           defaultValue={this.props.message}
           onDragEnter={this.onDragEnter}
@@ -132,10 +140,6 @@ export class Droparea extends Component {
       </div>
     )
   }
-}
-
-Droparea.defaultProps = {
-  message: 'Drop it like it\'s hot!'
 }
 
 const addTrackMutation = gql`

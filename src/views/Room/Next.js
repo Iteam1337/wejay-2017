@@ -10,8 +10,8 @@ export const Next = ({ mutate, roomName }: NextProps) => {
   const handleNext = () => {
     mutate({
       variables: {
-        roomName
-      }
+        roomName,
+      },
     })
   }
 

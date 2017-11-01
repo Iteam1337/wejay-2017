@@ -13,6 +13,7 @@ exports[`components/AddRoom renders AddRoom 1`] = `
       onChange={[Function]}
       placeholder="Room name"
       type="text"
+      value=""
     />
     <button
       className="Rooms__button"

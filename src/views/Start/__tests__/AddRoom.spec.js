@@ -20,8 +20,8 @@ describe('components/AddRoom', () => {
     it('sets room name on state', () => {
       const event = {
         target: {
-          value: 'test'
-        }
+          value: 'test',
+        },
       }
 
       instance.updateRoomName(event)

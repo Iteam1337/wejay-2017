@@ -46,7 +46,7 @@ export class Room extends Component<RoomProps> {
     this.props.data.subscribeToMore({
       document: queueUpdated,
       variables: {
-        roomName
+        roomName,
       },
       updateQuery: (prev, { subscriptionData }) => {
         if (!subscriptionData.data) {
@@ -57,16 +57,16 @@ export class Room extends Component<RoomProps> {
           ...prev,
           room: {
             ...prev.room,
-            queue: subscriptionData.data.queueUpdated
-          }
+            queue: subscriptionData.data.queueUpdated,
+          },
         }
-      }
+      },
     })
 
     this.props.data.subscribeToMore({
       document: onNextTrack,
       variables: {
-        roomName
+        roomName,
       },
       updateQuery: (prev, { subscriptionData }) => {
         if (!subscriptionData.data) {
@@ -77,16 +77,16 @@ export class Room extends Component<RoomProps> {
           ...prev,
           room: {
             ...prev.room,
-            currentTrack: subscriptionData.data.onNextTrack
-          }
+            currentTrack: subscriptionData.data.onNextTrack,
+          },
         }
-      }
+      },
     })
 
     this.props.data.subscribeToMore({
       document: usersUpdated,
       variables: {
-        roomName
+        roomName,
       },
       updateQuery: (prev, { subscriptionData }) => {
         if (!subscriptionData.data) {
@@ -97,10 +97,10 @@ export class Room extends Component<RoomProps> {
           ...prev,
           room: {
             ...prev.room,
-            users: subscriptionData.data.usersUpdated
-          }
+            users: subscriptionData.data.usersUpdated,
+          },
         }
-      }
+      },
     })
   }
 
@@ -165,7 +165,7 @@ Room.fragments = {
         id
       }
     }
-  `
+  `,
 }
 
 export const roomQuery = gql`
@@ -218,6 +218,6 @@ export const usersUpdated = gql`
 
 export default graphql(roomQuery, {
   options: props => ({
-    variables: { name: props.match.params.name }
-  })
+    variables: { name: props.match.params.name },
+  }),
 })(Room)

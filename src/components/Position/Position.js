@@ -1,17 +1,28 @@
-import React, { Component } from 'react'
+// @flow
 
-class PositionTracker extends Component {
+import React, { Component } from 'react'
+import type { Track } from 'models/models'
+
+type Props = {
+  track: Track
+}
+
+type State = {
+  position: number
+}
+
+class PositionTracker extends Component<Props, State> {
   state = {
-    position: 0
+    position: 0,
   }
 
-  timer = null
+  timer = undefined
 
   componentDidMount () {
     this.startTimer(this.props)
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps (nextProps: Props) {
     if (this.props.track.spotifyUri !== nextProps.track.spotifyUri) {
       clearInterval(this.timer)
 
@@ -23,12 +34,12 @@ class PositionTracker extends Component {
     clearInterval(this.timer)
   }
 
-  startTimer = props => {
+  startTimer = (props: Props) => {
     const { track } = props
 
     this.timer = setInterval(() => {
       this.setState(() => ({
-        position: (Date.now() - track.started) / track.duration * 100
+        position: (Date.now() - track.started) / track.duration * 100,
       }))
     }, 1000)
   }

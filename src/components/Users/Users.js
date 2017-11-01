@@ -1,9 +1,20 @@
+// @flow
+
 import './Users.css'
-import moment from 'moment'
 import React from 'react'
 import Gravatar from 'components/Gravatar'
+import differenceInMinutes from 'date-fns/difference_in_minutes'
+import distanceInWords from 'date-fns/distance_in_words'
 
-const Users = ({ users }) => {
+type Props = {
+  users: {
+    id: string,
+    email: string,
+    lastPlay: Date
+  }[]
+}
+
+const Users = ({ users }: Props) => {
   if (!users.length) {
     return null
   }
@@ -15,7 +26,7 @@ const Users = ({ users }) => {
         .filter(user => {
           return (
             user.lastPlay !== 0 &&
-            moment().diff(moment(user.lastPlay), 'minutes') <= 60
+            differenceInMinutes(new Date(), user.lastPlay) <= 60
           )
         })
         .sort((a, b) => b.lastPlay - a.lastPlay)
@@ -24,7 +35,7 @@ const Users = ({ users }) => {
             <Gravatar email={user.email} size={30} />
             <div className="Users__email">{user.email}</div>
             <div className="Users__lastPlay">
-              {moment(user.lastPlay).fromNow()}
+              {distanceInWords(user.lastPlay, new Date(), { addSuffix: true })}
             </div>
           </li>
         ))}

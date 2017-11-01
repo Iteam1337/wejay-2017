@@ -12,15 +12,15 @@ describe('components/Track', () => {
         track={{
           artists: [
             {
-              name: 'artist'
+              name: 'artist',
             },
-            { name: 'artist two' }
+            { name: 'artist two' },
           ],
           duration: 200,
           name: 'track',
           user: {
-            id: '1'
-          }
+            id: '1',
+          },
         }}
       />
     )
@@ -28,7 +28,7 @@ describe('components/Track', () => {
 
   it('returns null if no track', () => {
     component.setProps({
-      track: undefined
+      track: undefined,
     })
 
     expect(component.type()).toBeNull()
@@ -39,9 +39,9 @@ describe('components/Track', () => {
       track: {
         duration: 0,
         user: {
-          id: '1'
-        }
-      }
+          id: '1',
+        },
+      },
     })
 
     expect(toJson(component)).toMatchSnapshot()

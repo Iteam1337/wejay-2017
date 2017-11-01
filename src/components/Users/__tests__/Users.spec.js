@@ -14,8 +14,8 @@ describe('components/Users', () => {
         users={[
           { email: 'cookie@monster.com', id: '1', lastPlay: 0 },
           { email: 'count@vancount.com', id: '2', lastPlay: 1505599875714 },
+          { email: 'oscar@grouch.com', id: '4', lastPlay: 1506599873714 },
           { email: 'big@bird.com', id: '3', lastPlay: 1506599875714 },
-          { email: 'big@bird.com', id: '3', lastPlay: 1506599873714 }
         ]}
       />
     )
@@ -25,9 +25,13 @@ describe('components/Users', () => {
     mockdate.reset()
   })
 
+  it('renders correctly', () => {
+    expect(component).toMatchSnapshot()
+  })
+
   it('returns null if no users', () => {
     component.setProps({
-      users: []
+      users: [],
     })
 
     expect(component.type()).toBeNull()

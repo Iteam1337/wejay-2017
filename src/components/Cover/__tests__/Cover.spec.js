@@ -13,10 +13,10 @@ describe('components/Cover', () => {
           album: {
             images: [
               {
-                url: 'test.png'
-              }
-            ]
-          }
+                url: 'test.png',
+              },
+            ],
+          },
         }}
         width={50}
       />
@@ -25,7 +25,7 @@ describe('components/Cover', () => {
 
   it('renders a temp cover if no images are provided', () => {
     component.setProps({
-      track: { album: {} }
+      track: { album: {} },
     })
 
     expect(toJson(component)).toMatchSnapshot()

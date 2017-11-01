@@ -9,7 +9,7 @@ describe('components/Droparea', () => {
 
   beforeEach(() => {
     event = {
-      preventDefault: jest.fn()
+      preventDefault: jest.fn(),
     }
 
     component = shallow(<Droparea />)

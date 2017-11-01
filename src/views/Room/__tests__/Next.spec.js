@@ -22,8 +22,8 @@ describe('components/Next', () => {
 
     expect(mutate).toHaveBeenCalledWith({
       variables: {
-        roomName: 'test'
-      }
+        roomName: 'test',
+      },
     })
   })
 })

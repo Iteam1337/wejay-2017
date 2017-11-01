@@ -11,8 +11,8 @@ describe('components/Queue', () => {
         tracks={[
           {
             name: 'Circles',
-            spotifyUri: 1337
-          }
+            spotifyUri: 1337,
+          },
         ]}
       />
     )
@@ -24,7 +24,7 @@ describe('components/Queue', () => {
 
   it('should display empty state when no queue', () => {
     component.setProps({
-      tracks: []
+      tracks: [],
     })
 
     expect(component.find('.EmptyState')).toMatchSnapshot()

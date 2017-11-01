@@ -1,11 +1,18 @@
+// @flow
+
 import './Track.css'
 import React from 'react'
 import Cover from 'components/Cover'
 import Gravatar from 'components/Gravatar'
 import { timeParser } from 'utils/parsers'
 import classnames from 'classnames'
+import type { Track } from 'models/models'
 
-const Track = ({ track }) => {
+type Props = {
+  track: Track
+}
+
+const TrackItem = ({ track }: Props) => {
   if (!track) {
     return null
   }
@@ -29,7 +36,7 @@ const Track = ({ track }) => {
   return (
     <li
       className={classnames('Track', {
-        Track__pending: !track.duration
+        Track__pending: !track.duration,
       })}
     >
       <div className="Track__cover">
@@ -47,4 +54,4 @@ const Track = ({ track }) => {
   )
 }
 
-export default Track
+export default TrackItem

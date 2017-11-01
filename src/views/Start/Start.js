@@ -23,13 +23,13 @@ type StartState = {
 export class Start extends Component<StartProps, StartState> {
   state = {
     user: '',
-    hasUser: false
+    hasUser: false,
   }
 
   componentDidMount () {
     if (localStorage.getItem('user')) {
       this.setState(() => ({
-        hasUser: true
+        hasUser: true,
       }))
     }
   }
@@ -39,13 +39,13 @@ export class Start extends Component<StartProps, StartState> {
     localStorage.setItem('user', user)
 
     this.setState(() => ({
-      hasUser: true
+      hasUser: true,
     }))
   }
 
   updateEmail = (event: { target: { value: string } }) => {
     this.setState({
-      user: event.target.value
+      user: event.target.value,
     })
   }
 
