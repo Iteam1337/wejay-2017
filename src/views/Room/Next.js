@@ -1,9 +1,10 @@
 import React from 'react'
-import { gql, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
 type NextProps = {
   mutate: Function,
-  roomName: string
+  roomName: string,
 }
 
 export const Next = ({ mutate, roomName }: NextProps) => {

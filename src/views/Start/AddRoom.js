@@ -1,15 +1,16 @@
 // @flow
 
 import React, { Component } from 'react'
-import { gql, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import { startQuery } from './Start'
+import gql from 'graphql-tag'
 
 type Props = {
-  mutate: Function
+  mutate: Function,
 }
 
 type State = {
-  roomName: string
+  roomName: string,
 }
 
 export class AddRoom extends Component<Props, State> {
@@ -69,8 +70,7 @@ export class AddRoom extends Component<Props, State> {
           <button
             className="Rooms__button"
             disabled={roomName.length === 0}
-            type="submit"
-          >
+            type="submit">
             Add new room
           </button>
         </form>

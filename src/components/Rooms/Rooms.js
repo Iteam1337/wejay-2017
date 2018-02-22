@@ -2,17 +2,18 @@
 
 import './Rooms.css'
 import React, { Component } from 'react'
-import { gql, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import { withRouter } from 'react-router-dom'
+import gql from 'graphql-tag'
 
 type RoomsProps = {
   history: {
-    push: Function
+    push: Function,
   },
   mutate: Function,
   rooms: {
-    name: string
-  }[]
+    name: string,
+  }[],
 }
 
 export class Rooms extends Component<RoomsProps> {
@@ -45,8 +46,7 @@ export class Rooms extends Component<RoomsProps> {
           <li className="Rooms__room" key={`room-${i}`}>
             <button
               className="Rooms__button"
-              onClick={() => this.joinRoom(room.name)}
-            >
+              onClick={() => this.joinRoom(room.name)}>
               {room.name}
             </button>
           </li>

@@ -2,7 +2,8 @@
 
 import './Droparea.css'
 import React, { Component } from 'react'
-import { gql, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 import { roomQuery } from 'views/Room/Room'
 import classnames from 'classnames'
 import md5 from 'md5'
@@ -10,11 +11,11 @@ import md5 from 'md5'
 type Props = {
   message?: string,
   mutate: Function,
-  roomName: string
+  roomName: string,
 }
 
 type State = {
-  isDragOver: boolean
+  isDragOver: boolean,
 }
 
 export class Droparea extends Component<Props, State> {

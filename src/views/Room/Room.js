@@ -2,11 +2,12 @@
 
 import './Room.css'
 import React, { Component } from 'react'
-import { gql, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import NowPlaying from './NowPlaying/NowPlaying'
 import Droparea from 'components/Droparea'
 import Queue from 'components/Queue'
 import Users from 'components/Users'
+import gql from 'graphql-tag'
 
 type RoomProps = {
   data: {
@@ -16,28 +17,28 @@ type RoomProps = {
     room: {
       currentTrack: {
         artists: {
-          name: string
+          name: string,
         }[],
         name: string,
         user: {
-          id: string
-        }
+          id: string,
+        },
       },
       name: string,
       queue: {}[],
-      users: {}[]
-    }
+      users: {}[],
+    },
   },
   match: {
     params: {
-      name: string
-    }
-  }
+      name: string,
+    },
+  },
 }
 
 export class Room extends Component<RoomProps> {
   static fragments: {
-    track: string
+    track: string,
   }
 
   componentWillMount () {

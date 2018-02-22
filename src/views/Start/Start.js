@@ -4,23 +4,24 @@ import './Start.css'
 import React, { Component } from 'react'
 import Rooms from 'components/Rooms'
 import AddRoom from './AddRoom'
-import { gql, graphql } from 'react-apollo'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 
-type StartProps = {
+type Props = {
   data: {
     subscribeToMore: Function,
     error?: { message: string },
     loading: boolean,
-    rooms: {}[]
-  }
+    rooms: {}[],
+  },
 }
 
-type StartState = {
+type State = {
   user: string,
-  hasUser: boolean
+  hasUser: boolean,
 }
 
-export class Start extends Component<StartProps, StartState> {
+export class Start extends Component<Props, State> {
   state = {
     user: '',
     hasUser: false,
@@ -75,8 +76,7 @@ export class Start extends Component<StartProps, StartState> {
                 <button
                   className="Rooms__button"
                   disabled={user.length === 0}
-                  onClick={this.saveEmail}
-                >
+                  onClick={this.saveEmail}>
                   Save user
                 </button>
               </div>
