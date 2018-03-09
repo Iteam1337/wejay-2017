@@ -6,9 +6,7 @@
 
 .Cover__image {
   max-width: 100%;
-  position: relative;
-  vertical-align: top;
-  z-index: 2; }
+  vertical-align: top; }
 
 .Cover__shadow {
   bottom: -25px;

@@ -11,7 +11,7 @@ type DurationProps = {
 const DurationWrap = styled.div`
   color: rgba(54, 61, 67, 1);
   font-size: 14px;
-  text-align: right;
+  text-align: center;
 `
 
 const Duration = ({ duration }: DurationProps) => {

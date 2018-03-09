@@ -2,15 +2,14 @@
 
 import * as React from 'react'
 import * as WejayApi from '__generated__/types.flow'
-// import NowPlaying from './NowPlaying/NowPlaying'
+import NowPlaying from './NowPlaying/NowPlaying'
 import Droparea from 'components/Droparea'
 import Queue from 'components/Queue'
-// import Users from 'components/Users'
 import RoomHeader from './RoomHeader'
 import WejayHeader from './WejayHeader'
 import styled from 'styled-components'
 
-export type Room = $PropertyType<WejayApi.RoomQueryQuery, 'room'>
+export type RoomType = $PropertyType<WejayApi.RoomQueryQuery, 'room'>
 type RoomProps = {
   room: Room,
 }
@@ -36,6 +35,7 @@ const Room = ({ room }: RoomProps) => {
         <Queue tracks={room.queue} />
         <Droparea roomName={room.name} />
       </RoomWrap>
+      <NowPlaying track={room.currentTrack} />
     </React.Fragment>
   )
 }

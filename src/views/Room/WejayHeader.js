@@ -5,8 +5,14 @@ import styled from 'styled-components'
 import wejayLogo from './img/logo.png'
 
 const HeaderWrap = styled.section`
+  background-color: #fff;
   border-bottom: 1px solid #eaecef;
+  left: 0;
   padding: 20px;
+  position: sticky;
+  right: 0;
+  top: 0;
+  z-index: 1;
 `
 
 const HeaderInner = styled.section`

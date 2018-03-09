@@ -3,6 +3,7 @@
 import * as WejayApi from '__generated__/types.flow'
 import React from 'react'
 import Cover from 'components/Cover'
+import Gravatar from 'components/Gravatar'
 import Duration from './Duration'
 import TrackArtist from './TrackArtist'
 import styled from 'styled-components'
@@ -15,15 +16,16 @@ const TrackRow = styled.div`
   align-items: center;
   border-bottom: 1px solid #eaecef;
   display: grid;
-  grid-template-columns: 60px 1fr 60px;
+  grid-column-gap: 20px;
+  grid-template-columns: 40px 1fr 50px 30px;
   padding: 15px 20px;
 `
 
-const TrackMeta = styled.div`
+export const TrackMeta = styled.div`
   line-height: 1.4;
 `
 
-const TrackName = styled.div`
+export const TrackName = styled.div`
   color: rgba(54, 61, 67, 0.6);
   font-size: 12px;
 `
@@ -43,6 +45,8 @@ const TrackItem = ({ track }: TrackProps) => {
       </TrackMeta>
 
       <Duration duration={track.duration} />
+
+      <Gravatar id={track.user.id} size={30} />
     </TrackRow>
   )
 }

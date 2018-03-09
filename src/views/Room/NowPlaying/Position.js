@@ -2,6 +2,18 @@
 
 import * as React from 'react'
 import * as WejayApi from '__generated__/types.flow'
+import styled from 'styled-components'
+
+const PositionBarWrap = styled.div`
+  height: 5px;
+`
+
+const PositionBar = styled.div`
+  background: rgba(255, 134, 0, 0.4);
+  border-radius: 0 2px 0 0;
+  height: 5px;
+  transition: width 100ms ease-in-out;
+`
 
 type Props = {
   track: WejayApi.TrackInfoFragment,
@@ -48,9 +60,9 @@ class PositionTracker extends React.Component<Props, State> {
     const { position } = this.state
 
     return (
-      <div className="Position">
-        <div className="Position__bar" style={{ width: `${position}%` }} />
-      </div>
+      <PositionBarWrap>
+        <PositionBar style={{ width: `${position}%` }} />
+      </PositionBarWrap>
     )
   }
 }

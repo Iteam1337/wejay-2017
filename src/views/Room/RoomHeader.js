@@ -3,12 +3,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import humanizeDuration from 'humanize-duration'
-import type { Room } from './Room'
+import type { RoomType } from './Room'
 import pluralize from 'pluralize'
 
 type RoomHeaderProps = {
   name: string,
-  queue: $PropertyType<Room, 'queue'>,
+  queue: $PropertyType<RoomType, 'queue'>,
   users: number,
 }
 
@@ -43,7 +43,7 @@ const RoomHeader = ({ name, queue, users }: RoomHeaderProps) => {
       <RoomMeta>
         {queue.length} {pluralize('track', queue.length)} •{' '}
         {humanizeDuration(duration, { delimiter: ' - ', round: true })} •{' '}
-        {users} {pluralize('user', users)}
+        {users} {pluralize('contributor', users)}
       </RoomMeta>
     </RoomHeaderWrap>
   )
