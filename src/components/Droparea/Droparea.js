@@ -47,7 +47,7 @@ export class Droparea extends Component<Props, State> {
     })
   }
 
-  _onDrop = (e: SyntheticDragEvent<HTMLTextAreaElement>) => {
+  onDrop = (e: SyntheticDragEvent<HTMLTextAreaElement>) => {
     const { mutate, roomName } = this.props
     const userId = md5(localStorage.getItem('user'))
 
@@ -135,7 +135,7 @@ export class Droparea extends Component<Props, State> {
           defaultValue={this.props.message}
           onDragEnter={this.onDragEnter}
           onDragLeave={this.onDragLeave}
-          onDrop={this._onDrop}
+          onDrop={this.onDrop}
           spellCheck={false}
         />
       </div>

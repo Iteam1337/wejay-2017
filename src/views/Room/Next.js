@@ -1,13 +1,15 @@
+// @flow
+
 import React from 'react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
-type NextProps = {
+type Props = {
   mutate: Function,
   roomName: string,
 }
 
-export const Next = ({ mutate, roomName }: NextProps) => {
+export const Next = ({ mutate, roomName }: Props) => {
   const handleNext = () => {
     mutate({
       variables: {

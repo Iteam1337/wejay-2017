@@ -1,14 +1,14 @@
 // @flow
 
 import './Cover.css'
+import * as WejayApi from '__generated__/types.flow'
 import React from 'react'
 import classnames from 'classnames'
-import type { Track } from 'models/models'
 
 type Props = {
   small: boolean,
-  track: Track,
-  width?: number
+  track: WejayApi.TrackInfoFragment,
+  width?: number,
 }
 
 export const Cover = ({ track, small, width }: Props) => {

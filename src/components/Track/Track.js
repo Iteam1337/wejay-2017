@@ -1,15 +1,15 @@
 // @flow
 
 import './Track.css'
+import * as WejayApi from '__generated__/types.flow'
 import React from 'react'
 import Cover from 'components/Cover'
 import Gravatar from 'components/Gravatar'
 import { timeParser } from 'utils/parsers'
 import classnames from 'classnames'
-import type { Track } from 'models/models'
 
 type Props = {
-  track: Track
+  track: WejayApi.TrackInfoFragment,
 }
 
 const TrackItem = ({ track }: Props) => {

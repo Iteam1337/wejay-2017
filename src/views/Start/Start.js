@@ -1,6 +1,8 @@
 // @flow
 
 import './Start.css'
+import * as Wejay from 'typings/wejay.flow'
+import * as WejayApi from '__generated__/types.flow'
 import React, { Component } from 'react'
 import Rooms from 'components/Rooms'
 import AddRoom from './AddRoom'
@@ -8,12 +10,7 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 type Props = {
-  data: {
-    subscribeToMore: Function,
-    error?: { message: string },
-    loading: boolean,
-    rooms: {}[],
-  },
+  data: Wejay.ApolloBase<WejayApi.StartQueryQuery>,
 }
 
 type State = {
@@ -76,7 +73,8 @@ export class Start extends Component<Props, State> {
                 <button
                   className="Rooms__button"
                   disabled={user.length === 0}
-                  onClick={this.saveEmail}>
+                  onClick={this.saveEmail}
+                >
                   Save user
                 </button>
               </div>

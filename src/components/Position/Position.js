@@ -1,17 +1,17 @@
 // @flow
 
-import React, { Component } from 'react'
-import type { Track } from 'models/models'
+import * as React from 'react'
+import * as WejayApi from '__generated__/types.flow'
 
 type Props = {
-  track: Track
+  track: WejayApi.TrackInfoFragment,
 }
 
 type State = {
-  position: number
+  position: number,
 }
 
-class PositionTracker extends Component<Props, State> {
+class PositionTracker extends React.Component<Props, State> {
   state = {
     position: 0,
   }

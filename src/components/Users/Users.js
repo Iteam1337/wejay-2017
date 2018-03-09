@@ -1,17 +1,14 @@
 // @flow
 
 import './Users.css'
+import * as WejayApi from '__generated__/types.flow.js'
 import React from 'react'
 import Gravatar from 'components/Gravatar'
 import differenceInMinutes from 'date-fns/difference_in_minutes'
 import distanceInWords from 'date-fns/distance_in_words'
 
 type Props = {
-  users: {
-    id: string,
-    email: string,
-    lastPlay: Date
-  }[]
+  users: $PropertyType<$PropertyType<WejayApi.RoomQueryQuery, 'room'>, 'users'>,
 }
 
 const Users = ({ users }: Props) => {

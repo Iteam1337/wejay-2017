@@ -1,6 +1,8 @@
 // @flow
 
 import './Room.css'
+import * as Wejay from 'typings/wejay.flow'
+import * as WejayApi from '__generated__/types.flow'
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
 import NowPlaying from './NowPlaying/NowPlaying'
@@ -9,26 +11,8 @@ import Queue from 'components/Queue'
 import Users from 'components/Users'
 import gql from 'graphql-tag'
 
-type RoomProps = {
-  data: {
-    subscribeToMore: Function,
-    error?: { message: string },
-    loading: boolean,
-    room: {
-      currentTrack: {
-        artists: {
-          name: string,
-        }[],
-        name: string,
-        user: {
-          id: string,
-        },
-      },
-      name: string,
-      queue: {}[],
-      users: {}[],
-    },
-  },
+type Props = {
+  data: Wejay.ApolloBase<WejayApi.RoomQueryQuery>,
   match: {
     params: {
       name: string,
@@ -36,7 +20,7 @@ type RoomProps = {
   },
 }
 
-export class Room extends Component<RoomProps> {
+export class Room extends Component<Props> {
   static fragments: {
     track: string,
   }

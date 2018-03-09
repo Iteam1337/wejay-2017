@@ -1,19 +1,16 @@
 // @flow
 
 import './Rooms.css'
+import * as WejayApi from '__generated__/types.flow'
 import React, { Component } from 'react'
 import { graphql } from 'react-apollo'
-import { withRouter } from 'react-router-dom'
+import * as ReactRouterDOM from 'react-router-dom'
 import gql from 'graphql-tag'
 
 type RoomsProps = {
-  history: {
-    push: Function,
-  },
+  ...ReactRouterDOM.ContextRouter,
   mutate: Function,
-  rooms: {
-    name: string,
-  }[],
+  rooms: $PropertyType<WejayApi.StartQueryQuery, 'rooms'>,
 }
 
 export class Rooms extends Component<RoomsProps> {
@@ -46,7 +43,8 @@ export class Rooms extends Component<RoomsProps> {
           <li className="Rooms__room" key={`room-${i}`}>
             <button
               className="Rooms__button"
-              onClick={() => this.joinRoom(room.name)}>
+              onClick={() => this.joinRoom(room.name)}
+            >
               {room.name}
             </button>
           </li>
@@ -64,4 +62,4 @@ const joinRoomMutation = gql`
   }
 `
 
-export default withRouter(graphql(joinRoomMutation)(Rooms))
+export default ReactRouterDOM.withRouter(graphql(joinRoomMutation)(Rooms))
