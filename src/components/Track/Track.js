@@ -1,56 +1,49 @@
 // @flow
 
-import './Track.css'
 import * as WejayApi from '__generated__/types.flow'
 import React from 'react'
 import Cover from 'components/Cover'
-import Gravatar from 'components/Gravatar'
-import { timeParser } from 'utils/parsers'
-import classnames from 'classnames'
+import Duration from './Duration'
+import TrackArtist from './TrackArtist'
+import styled from 'styled-components'
 
-type Props = {
+type TrackProps = {
   track: WejayApi.TrackInfoFragment,
 }
 
-const TrackItem = ({ track }: Props) => {
+const TrackRow = styled.div`
+  align-items: center;
+  border-bottom: 1px solid #eaecef;
+  display: grid;
+  grid-template-columns: 60px 1fr 60px;
+  padding: 15px 20px;
+`
+
+const TrackMeta = styled.div`
+  line-height: 1.4;
+`
+
+const TrackName = styled.div`
+  color: rgba(54, 61, 67, 0.6);
+  font-size: 12px;
+`
+
+const TrackItem = ({ track }: TrackProps) => {
   if (!track) {
     return null
   }
 
-  if (!track.duration) {
-    return (
-      <div className="Track Track__pending">
-        <div className="Track__cover">
-          <Cover small track={track} width={80} />
-          <Gravatar className="Track__gravatar" id={track.user.id} size={30} />
-        </div>
-        <div className="Track__content">
-          <div className="Track__artist" />
-          <div className="Track__name" />
-        </div>
-        <div className="Track__duration" />
-      </div>
-    )
-  }
-
   return (
-    <li
-      className={classnames('Track', {
-        Track__pending: !track.duration,
-      })}
-    >
-      <div className="Track__cover">
-        <Cover small track={track} width={80} />
-        <Gravatar className="Track__gravatar" id={track.user.id} size={30} />
-      </div>
-      <div className="Track__content">
-        <div className="Track__artist">
-          {track.artists.map(t => t.name).join(', ')}
-        </div>
-        <div className="Track__name">{track.name}</div>
-      </div>
-      <div className="Track__duration">{timeParser(track.duration)}</div>
-    </li>
+    <TrackRow>
+      <Cover small track={track} width={40} />
+
+      <TrackMeta>
+        <TrackArtist artists={track.artists} />
+        <TrackName>{track.name}</TrackName>
+      </TrackMeta>
+
+      <Duration duration={track.duration} />
+    </TrackRow>
   )
 }
 

@@ -7,7 +7,7 @@ import asyncComponent from './asyncComponent'
 import { client } from './apolloSetup'
 
 const StartAsync = asyncComponent(() => import('./views/Start/Start'))
-const RoomAsync = asyncComponent(() => import('./views/Room/Room'))
+const RoomAsync = asyncComponent(() => import('./views/Room/RoomContainer'))
 
 const AppRoot = () => {
   return (

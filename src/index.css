@@ -1,19 +1,8 @@
-@font-face {
-  font-family: "San Francisco";
-  font-weight: bold;
-  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-bold-webfont.woff2");
-}
-
-@font-face {
-  font-family: "San Francisco";
-  font-weight: normal;
-  src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-medium-webfont.woff2");
-}
-
-html, body {
+html,
+body {
   background-color: #fff;
-  color: #AFAFC7;
-  font-family: 'San Francisco', Helvetica, sans-serif;
+  color: #afafc7;
+  font-family: 'Roboto', Helvetica, sans-serif;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;

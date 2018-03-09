@@ -1,68 +1,31 @@
+// @flow
+
 import React from 'react'
 import { shallow } from 'enzyme'
-import toJson from 'enzyme-to-json'
-import { Room } from '../Room'
+import Room from '../Room'
 
 describe('components/Room', () => {
   let component
-  let data
+  let room
 
   beforeEach(() => {
-    data = {
-      error: null,
-      loading: false,
-      room: {
-        currentTrack: {
-          artists: [{ name: 'artist' }, { name: 'artist two' }],
-          name: 'track',
-          user: {
-            id: '1337',
-          },
+    room = {
+      currentTrack: {
+        artists: [{ name: 'artist' }, { name: 'artist two' }],
+        name: 'track',
+        user: {
+          id: '1337',
         },
-        name: 'test',
-        queue: [],
-        users: [],
       },
-      subscribeToMore: jest.fn(),
+      name: 'test',
+      queue: [],
+      users: [],
     }
 
-    component = shallow(
-      <Room
-        data={data}
-        match={{
-          params: {
-            name: 'test',
-          },
-        }}
-      />
-    )
-  })
-
-  it('renders a loading message', () => {
-    component.setProps({
-      data: {
-        ...data,
-        loading: true,
-      },
-    })
-
-    expect(toJson(component)).toMatchSnapshot()
-  })
-
-  it('renders error message', () => {
-    component.setProps({
-      data: {
-        ...data,
-        error: {
-          message: 'Error',
-        },
-      },
-    })
-
-    expect(toJson(component)).toMatchSnapshot()
+    component = shallow(<Room room={room} />)
   })
 
   it('renders Room', () => {
-    expect(toJson(component)).toMatchSnapshot()
+    expect(component).toMatchSnapshot()
   })
 })
