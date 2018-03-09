@@ -35,6 +35,7 @@ const Room = ({ room }: RoomProps) => {
   return (
     <RoomOuter>
       <WejayHeader />
+
       <RoomWrap>
         <RoomHeader
           name={room.name}
@@ -44,6 +45,7 @@ const Room = ({ room }: RoomProps) => {
         <Queue tracks={room.queue} />
         <Droparea roomName={room.name} />
       </RoomWrap>
+
       <NowPlaying track={room.currentTrack} />
     </RoomOuter>
   )

@@ -17,7 +17,7 @@ const TrackRow = styled.div`
   border-bottom: 1px solid #eaecef;
   display: grid;
   grid-column-gap: 20px;
-  grid-template-columns: 40px 1fr 50px 30px;
+  grid-template-columns: 40px 1fr 40px 30px;
   padding: 15px 20px;
 `
 

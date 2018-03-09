@@ -9,8 +9,9 @@ type TrackDurationProps = {
 }
 
 const TrackDurationWrap = styled.div`
-  color: rgba(54, 61, 67, 1);
-  font-size: 14px;
+  color: rgba(54, 61, 67, 0.6);
+  font-size: 12px;
+  font-weight: 500;
   text-align: center;
 `
 
