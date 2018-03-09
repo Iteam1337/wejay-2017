@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Queue can render 1`] = `
-<ul
-  className="Queue"
->
+<styled.section>
   <TrackItem
     key="1337"
     track={
@@ -13,7 +11,7 @@ exports[`components/Queue can render 1`] = `
       }
     }
   />
-</ul>
+</styled.section>
 `;
 
 exports[`components/Queue should display empty state when no queue 1`] = `

@@ -14,17 +14,26 @@ type RoomProps = {
   room: Room,
 }
 
-const RoomWrap = styled.section`
+const RoomOuter = styled.section`
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+`
+
+const RoomWrap = styled.section`
+  display: grid;
   grid-row-gap: 30px;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
   margin: 40px auto;
   max-width: 960px;
+  width: 100%;
 `
 
 const Room = ({ room }: RoomProps) => {
   return (
-    <React.Fragment>
+    <RoomOuter>
       <WejayHeader />
       <RoomWrap>
         <RoomHeader
@@ -36,7 +45,7 @@ const Room = ({ room }: RoomProps) => {
         <Droparea roomName={room.name} />
       </RoomWrap>
       <NowPlaying track={room.currentTrack} />
-    </React.Fragment>
+    </RoomOuter>
   )
 }
 

@@ -1,61 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/NowPlaying renders NowPlaying 1`] = `
-<div>
-  <Component
-    track={
-      Object {
-        "artists": Array [
-          Object {
-            "name": "artist one",
+<styled.section>
+  <styled.section>
+    <Component
+      small={true}
+      track={
+        Object {
+          "artists": Array [
+            Object {
+              "name": "artist one",
+            },
+            Object {
+              "name": "artist two",
+            },
+          ],
+          "user": Object {
+            "id": "1337",
           },
-          Object {
-            "name": "artist two",
-          },
-        ],
-        "user": Object {
-          "id": "1337",
-        },
+        }
       }
-    }
-  />
-  <div
-    className="Room__now-playing"
-  >
-    <div
-      className="Room__now-playing-track"
-    >
-      <div
-        className="Track__artist"
-      >
-        artist one, artist two
-      </div>
-      <div
-        className="Track__name"
+      width={40}
+    />
+    <styled.div>
+      <TrackArtist
+        artists={
+          Array [
+            Object {
+              "name": "artist one",
+            },
+            Object {
+              "name": "artist two",
+            },
+          ]
+        }
       />
-    </div>
+      <styled.div />
+    </styled.div>
+    <PositionTracker
+      track={
+        Object {
+          "artists": Array [
+            Object {
+              "name": "artist one",
+            },
+            Object {
+              "name": "artist two",
+            },
+          ],
+          "user": Object {
+            "id": "1337",
+          },
+        }
+      }
+    />
     <Gravatar
       email=""
       id="1337"
       size={30}
     />
-  </div>
-  <PositionTracker
-    track={
-      Object {
-        "artists": Array [
-          Object {
-            "name": "artist one",
-          },
-          Object {
-            "name": "artist two",
-          },
-        ],
-        "user": Object {
-          "id": "1337",
-        },
-      }
-    }
-  />
-</div>
+  </styled.section>
+</styled.section>
 `;

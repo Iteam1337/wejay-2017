@@ -2,9 +2,20 @@
 
 exports[`components/Room renders Room 1`] = `
 <React.Fragment>
-  <Apollo(Droparea)
-    roomName="test"
-  />
+  <WejayHeader />
+  <styled.section>
+    <RoomHeader
+      name="test"
+      queue={Array []}
+      users={0}
+    />
+    <Queue
+      tracks={Array []}
+    />
+    <Apollo(Droparea)
+      roomName="test"
+    />
+  </styled.section>
   <NowPlaying
     track={
       Object {
@@ -22,12 +33,6 @@ exports[`components/Room renders Room 1`] = `
         },
       }
     }
-  />
-  <Queue
-    tracks={Array []}
-  />
-  <Users
-    users={Array []}
   />
 </React.Fragment>
 `;

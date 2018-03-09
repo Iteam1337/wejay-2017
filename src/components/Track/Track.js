@@ -4,7 +4,7 @@ import * as WejayApi from '__generated__/types.flow'
 import React from 'react'
 import Cover from 'components/Cover'
 import Gravatar from 'components/Gravatar'
-import Duration from './Duration'
+import TrackDuration from './TrackDuration'
 import TrackArtist from './TrackArtist'
 import styled from 'styled-components'
 
@@ -44,7 +44,7 @@ const TrackItem = ({ track }: TrackProps) => {
         <TrackName>{track.name}</TrackName>
       </TrackMeta>
 
-      <Duration duration={track.duration} />
+      <TrackDuration duration={track.duration} />
 
       <Gravatar id={track.user.id} size={30} />
     </TrackRow>
