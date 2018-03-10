@@ -3,22 +3,25 @@
 exports[`components/Room renders Room 1`] = `
 <styled.section>
   <WejayHeader />
+  <Droparea />
   <styled.section>
     <RoomHeader
       name="test"
+      numberOfUsers={0}
       queue={Array []}
-      users={0}
     />
-    <Queue
+    <Apollo(RoomSearch) />
+    <TrackList
       tracks={Array []}
-    />
-    <Apollo(Droparea)
-      roomName="test"
     />
   </styled.section>
   <NowPlaying
     track={
       Object {
+        "album": Object {
+          "images": Array [],
+          "name": "test",
+        },
         "artists": Array [
           Object {
             "name": "artist",
@@ -27,8 +30,12 @@ exports[`components/Room renders Room 1`] = `
             "name": "artist two",
           },
         ],
+        "duration": 123132,
         "name": "track",
+        "spotifyUri": "12314",
+        "started": null,
         "user": Object {
+          "email": "cookie@monster.com",
           "id": "1337",
         },
       }

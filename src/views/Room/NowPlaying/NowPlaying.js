@@ -2,12 +2,11 @@
 
 import * as WejayApi from '__generated__/types.flow'
 import React from 'react'
-import Cover from 'components/Cover'
-import Gravatar from 'components/Gravatar'
+import Cover from 'components/Cover/Cover'
+import Gravatar from 'components/Gravatar/Gravatar'
 import styled from 'styled-components'
-import { TrackMeta, TrackName } from 'components/Track/Track'
-import TrackArtist from 'components/Track/TrackArtist'
-import Position from './Position'
+import TrackMeta from 'components/Track/TrackMeta'
+import NowPlayingPosition from './NowPlayingPosition'
 
 type NowPlayingProps = {
   track: ?WejayApi.TrackInfoFragment,
@@ -28,12 +27,12 @@ const NowPlayingInner = styled.section`
   align-items: center;
   display: grid;
   grid-column-gap: 20px;
-  grid-template-columns: 1fr;
+  grid-template-columns: auto 1fr 0 auto;
   margin-left: auto;
   margin-right: auto;
   max-width: 960px;
 
-  @media (min-width: 1025px) {
+  @media (min-width: 769px) {
     grid-template-columns: 40px 1fr 400px 30px;
   }
 `
@@ -48,12 +47,8 @@ const NowPlaying = ({ track }: NowPlayingProps) => {
       <NowPlayingInner>
         <Cover small track={track} width={40} />
 
-        <TrackMeta>
-          <TrackArtist artists={track.artists} />
-          <TrackName>{track.name}</TrackName>
-        </TrackMeta>
-
-        <Position track={track} />
+        <TrackMeta artists={track.artists} name={track.name} />
+        <NowPlayingPosition track={track} />
 
         <Gravatar id={track.user.id} size={30} />
       </NowPlayingInner>

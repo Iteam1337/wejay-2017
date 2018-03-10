@@ -1,16 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components/Droparea renders Droparea 1`] = `
-<div
-  className="Droparea__wrap"
->
-  <textarea
-    className="Droparea"
-    defaultValue="Drop it like it's hot!"
-    onDragEnter={[Function]}
-    onDragLeave={[Function]}
-    onDrop={[Function]}
-    spellCheck={false}
-  />
-</div>
+<styled.textarea
+  defaultValue=""
+  isDragging={false}
+  onDragEnter={[Function]}
+  onDragLeave={[Function]}
+  onDrop={[Function]}
+  spellCheck={false}
+/>
 `;

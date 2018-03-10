@@ -5,22 +5,22 @@ import React from 'react'
 import Track from '../Track/Track'
 import styled from 'styled-components'
 
-type QueueProps = {
+type TrackListProps = {
   tracks: WejayApi.TrackInfoFragment[],
 }
 
-const QueueList = styled.section``
+const TrackListWrap = styled.section``
 
-const Queue = ({ tracks }: QueueProps) => {
+const TrackList = ({ tracks }: TrackListProps) => {
   if (!tracks || tracks.length === 0) {
     return <div className="EmptyState">Queue is empty</div>
   }
 
   return (
-    <QueueList>
+    <TrackListWrap>
       {tracks.map(track => <Track key={track.spotifyUri} track={track} />)}
-    </QueueList>
+    </TrackListWrap>
   )
 }
 
-export default Queue
+export default TrackList

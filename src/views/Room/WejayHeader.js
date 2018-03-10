@@ -12,7 +12,7 @@ const HeaderWrap = styled.section`
   position: sticky;
   right: 0;
   top: 0;
-  z-index: 1;
+  z-index: 2;
 `
 
 const HeaderInner = styled.section`

@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react'
 import { shallow } from 'enzyme'
 import Room from '../Room'
@@ -11,9 +9,17 @@ describe('components/Room', () => {
   beforeEach(() => {
     room = {
       currentTrack: {
+        album: {
+          images: [],
+          name: 'test',
+        },
         artists: [{ name: 'artist' }, { name: 'artist two' }],
+        duration: 123132,
         name: 'track',
+        spotifyUri: '12314',
+        started: null,
         user: {
+          email: 'cookie@monster.com',
           id: '1337',
         },
       },

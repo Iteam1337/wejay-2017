@@ -1,13 +1,13 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import Queue from '../Queue'
+import TrackList from '../TrackList'
 
-describe('components/Queue', () => {
+describe('components/TrackList', () => {
   let component
 
   beforeEach(() => {
     component = shallow(
-      <Queue
+      <TrackList
         tracks={[
           {
             name: 'Circles',
@@ -22,7 +22,7 @@ describe('components/Queue', () => {
     expect(component).toMatchSnapshot()
   })
 
-  it('should display empty state when no queue', () => {
+  it('should display empty state when no TrackList', () => {
     component.setProps({
       tracks: [],
     })

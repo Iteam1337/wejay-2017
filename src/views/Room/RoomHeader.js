@@ -8,8 +8,8 @@ import pluralize from 'pluralize'
 
 type RoomHeaderProps = {
   name: string,
+  numberOfUsers: number,
   queue: $PropertyType<RoomType, 'queue'>,
-  users: number,
 }
 
 const RoomHeaderWrap = styled.div``
@@ -33,17 +33,17 @@ const RoomMeta = styled.div`
   font-weight: 400;
 `
 
-const RoomHeader = ({ name, queue, users }: RoomHeaderProps) => {
+const RoomHeader = ({ name, numberOfUsers, queue }: RoomHeaderProps) => {
   const duration = queue.reduce((acc, track) => acc + track.duration, 0)
 
   return (
     <RoomHeaderWrap>
-      <PlaylistTitle>Playlist title</PlaylistTitle>
+      <PlaylistTitle>Room name</PlaylistTitle>
       <RoomName>{name}</RoomName>
       <RoomMeta>
         {queue.length} {pluralize('track', queue.length)} •{' '}
         {humanizeDuration(duration, { delimiter: ' - ', round: true })} •{' '}
-        {users} {pluralize('contributor', users)}
+        {numberOfUsers} {pluralize('contributor', numberOfUsers)}
       </RoomMeta>
     </RoomHeaderWrap>
   )

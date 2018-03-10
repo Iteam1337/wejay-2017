@@ -23,23 +23,19 @@ exports[`components/Track renders Track 1`] = `
     }
     width={40}
   />
-  <styled.div>
-    <TrackArtist
-      artists={
-        Array [
-          Object {
-            "name": "artist",
-          },
-          Object {
-            "name": "artist two",
-          },
-        ]
-      }
-    />
-    <styled.div>
-      track
-    </styled.div>
-  </styled.div>
+  <TrackMeta
+    artists={
+      Array [
+        Object {
+          "name": "artist",
+        },
+        Object {
+          "name": "artist two",
+        },
+      ]
+    }
+    name="track"
+  />
   <TrackDuration
     duration={200}
   />
@@ -65,10 +61,7 @@ exports[`components/Track renders a pending Track if no duration (optimisticResp
     }
     width={40}
   />
-  <styled.div>
-    <TrackArtist />
-    <styled.div />
-  </styled.div>
+  <TrackMeta />
   <TrackDuration
     duration={0}
   />

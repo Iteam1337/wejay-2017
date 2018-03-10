@@ -23,7 +23,7 @@ type State = {
   position: number,
 }
 
-class PositionTracker extends React.Component<Props, State> {
+class NowPlayingPosition extends React.Component<Props, State> {
   state = {
     position: 0,
   }
@@ -48,10 +48,11 @@ class PositionTracker extends React.Component<Props, State> {
 
   startTimer = (props: Props) => {
     const { track } = props
+    const started = track.started || 0
 
     this.timer = setInterval(() => {
       this.setState(() => ({
-        position: (Date.now() - track.started) / track.duration * 100,
+        position: (Date.now() - started) / track.duration * 100,
       }))
     }, 1000)
   }
@@ -67,4 +68,4 @@ class PositionTracker extends React.Component<Props, State> {
   }
 }
 
-export default PositionTracker
+export default NowPlayingPosition

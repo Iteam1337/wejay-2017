@@ -1,9 +1,8 @@
 // @flow
 
 import React from 'react'
-import { timeParser } from 'utils/parsers'
 import styled from 'styled-components'
-
+import trackDuration from 'track-duration'
 type TrackDurationProps = {
   duration: number,
 }
@@ -16,7 +15,7 @@ const TrackDurationWrap = styled.div`
 `
 
 const TrackDuration = ({ duration }: TrackDurationProps) => {
-  return <TrackDurationWrap>{timeParser(duration)}</TrackDurationWrap>
+  return <TrackDurationWrap>{trackDuration.parse(duration)}</TrackDurationWrap>
 }
 
 export default TrackDuration

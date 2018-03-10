@@ -22,22 +22,19 @@ exports[`components/NowPlaying renders NowPlaying 1`] = `
       }
       width={40}
     />
-    <styled.div>
-      <TrackArtist
-        artists={
-          Array [
-            Object {
-              "name": "artist one",
-            },
-            Object {
-              "name": "artist two",
-            },
-          ]
-        }
-      />
-      <styled.div />
-    </styled.div>
-    <PositionTracker
+    <TrackMeta
+      artists={
+        Array [
+          Object {
+            "name": "artist one",
+          },
+          Object {
+            "name": "artist two",
+          },
+        ]
+      }
+    />
+    <NowPlayingPosition
       track={
         Object {
           "artists": Array [

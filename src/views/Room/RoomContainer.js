@@ -5,9 +5,11 @@ import * as WejayApi from '__generated__/types.flow'
 import React, { Component } from 'react'
 import Room from './Room'
 import gql from 'graphql-tag'
-import { graphql } from 'react-apollo'
+import { compose, graphql } from 'react-apollo'
+import md5 from 'md5'
 
-type Props = {
+type RoomContainerProps = {
+  addTrack: (options: Object) => Promise<WejayApi.TrackInfoFragment>,
   data: Wejay.ApolloBase<WejayApi.RoomQueryQuery>,
   match: {
     params: {
@@ -16,12 +18,12 @@ type Props = {
   },
 }
 
-class RoomContainer extends Component<Props> {
+class RoomContainer extends Component<RoomContainerProps> {
   componentDidMount () {
     const roomName = this.props.match.params.name
 
     this.props.data.subscribeToMore({
-      document: queueUpdated,
+      document: roomUpdated,
       variables: {
         roomName,
       },
@@ -34,49 +36,77 @@ class RoomContainer extends Component<Props> {
           ...prev,
           room: {
             ...prev.room,
-            queue: subscriptionData.data.queueUpdated,
+            ...subscriptionData.data.roomUpdated,
           },
         }
       },
     })
+  }
 
-    this.props.data.subscribeToMore({
-      document: onNextTrack,
+  addToQueue = async spotifyId => {
+    const roomName = this.props.match.params.name
+    const userId = md5(localStorage.getItem('user'))
+
+    await this.props.addTrack({
       variables: {
-        roomName,
+        input: {
+          roomName,
+          userId,
+          spotifyId,
+        },
       },
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) {
-          return prev
-        }
-
-        return {
-          ...prev,
-          room: {
-            ...prev.room,
-            currentTrack: subscriptionData.data.onNextTrack,
+      optimisticResponse: {
+        queueTrack: {
+          album: {
+            images: [],
+            name: 'Fake album',
+            __typename: 'Album',
           },
-        }
-      },
-    })
-
-    this.props.data.subscribeToMore({
-      document: usersUpdated,
-      variables: {
-        roomName,
-      },
-      updateQuery: (prev, { subscriptionData }) => {
-        if (!subscriptionData.data) {
-          return prev
-        }
-
-        return {
-          ...prev,
-          room: {
-            ...prev.room,
-            users: subscriptionData.data.usersUpdated,
+          artists: [
+            {
+              name: 'Loading',
+              __typename: 'Artist',
+            },
+          ],
+          duration: 0,
+          name: 'Awesome track',
+          spotifyUri: spotifyId,
+          started: 0,
+          user: {
+            email: '',
+            id: userId,
+            __typename: 'User',
           },
+          __typename: 'Track',
+        },
+      },
+      update: (store, { data: { queueTrack } }) => {
+        const data = store.readQuery({
+          query: roomQuery,
+          variables: {
+            name: roomName,
+          },
+        })
+
+        const exists = data.room.queue.find(
+          track => track.spotifyUri === queueTrack.spotifyUri
+        )
+
+        const notCurrent =
+          data.room.currentTrack &&
+          data.room.currentTrack.spotifyUri !== queueTrack.spotifyUri
+
+        if (!exists && notCurrent) {
+          data.room.queue.push(queueTrack)
         }
+
+        store.writeQuery({
+          query: roomQuery,
+          variables: {
+            name: roomName,
+          },
+          data,
+        })
       },
     })
   }
@@ -94,14 +124,14 @@ class RoomContainer extends Component<Props> {
     }
 
     if (error) {
-      return <div className="Error">{error.message}</div>
+      return <div>{error.message}</div>
     }
 
-    return <Room room={room} />
+    return <Room addToQueue={this.addToQueue} room={room} />
   }
 }
 
-const TrackInfoFragment = gql`
+export const TrackInfoFragment = gql`
   fragment TrackInfo on Track {
     album {
       images {
@@ -125,6 +155,14 @@ const TrackInfoFragment = gql`
   }
 `
 
+const UserInfoFragment = gql`
+  fragment UserInfo on User {
+    email
+    id
+    lastPlay
+  }
+`
+
 export const roomQuery = gql`
   query RoomQuery($name: String!) {
     room(name: $name) {
@@ -133,9 +171,7 @@ export const roomQuery = gql`
       }
       name
       users {
-        email
-        id
-        lastPlay
+        ...UserInfo
       }
       queue {
         ...TrackInfo
@@ -144,40 +180,57 @@ export const roomQuery = gql`
   }
 
   ${TrackInfoFragment}
+  ${UserInfoFragment}
 `
 
-export const queueUpdated = gql`
-  subscription queueUpdated($roomName: String!) {
-    queueUpdated(roomName: $roomName) {
-      ...TrackInfo
+export const roomUpdated = gql`
+  subscription roomUpdated($roomName: String!) {
+    roomUpdated(roomName: $roomName) {
+      currentTrack {
+        ...TrackInfo
+      }
+      name
+      users {
+        ...UserInfo
+      }
+      queue {
+        ...TrackInfo
+      }
     }
   }
 
   ${TrackInfoFragment}
+  ${UserInfoFragment}
 `
 
-export const onNextTrack = gql`
-  subscription onNextTrack($roomName: String!) {
-    onNextTrack(roomName: $roomName) {
-      ...TrackInfo
+const addTrackMutation = gql`
+  mutation queueTrack($input: QueueInput!) {
+    queueTrack(input: $input) {
+      album {
+        images {
+          url
+        }
+        name
+      }
+      artists {
+        name
+      }
+      duration
+      name
+      spotifyUri
+      user {
+        email
+        id
+      }
     }
   }
-
-  ${TrackInfoFragment}
 `
 
-export const usersUpdated = gql`
-  subscription usersUpdated($roomName: String!) {
-    usersUpdated(roomName: $roomName) {
-      email
-      id
-      lastPlay
-    }
-  }
-`
-
-export default graphql(roomQuery, {
-  options: props => ({
-    variables: { name: props.match.params.name },
+export default compose(
+  graphql(roomQuery, {
+    options: props => ({
+      variables: { name: props.match.params.name },
+    }),
   }),
-})(RoomContainer)
+  graphql(addTrackMutation, { name: 'addTrack' })
+)(RoomContainer)

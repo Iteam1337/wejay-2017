@@ -48,16 +48,6 @@ export type joinRoomMutation = {|
   |},
 |};
 
-export type nextTrackMutationVariables = {|
-  roomName: string,
-|};
-
-export type nextTrackMutation = {|
-  nextTrack: ? {|
-    name: string,
-  |},
-|};
-
 export type RoomQueryQueryVariables = {|
   name: string,
 |};
@@ -219,4 +209,10 @@ export type TrackInfoFragment = {|
     email: string,
     id: string,
   |},
+|};
+
+export type UserInfoFragment = {|
+  email: string,
+  id: string,
+  lastPlay: number,
 |};

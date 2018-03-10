@@ -1142,7 +1142,7 @@ declare module 'date-fns/difference_in_milliseconds/index.js' {
   declare module.exports: $Exports<'date-fns/difference_in_milliseconds/index'>
 }
 declare module 'date-fns/difference_in_minutes/index.js' {
-  declare module.exports: $Exports<'date-fns/difference_in_minutes/index'>
+  declare module.exports: $Exports<'date-fns/difference_in_minutes'>
 }
 declare module 'date-fns/difference_in_months/index.js' {
   declare module.exports: $Exports<'date-fns/difference_in_months/index'>
@@ -1166,7 +1166,7 @@ declare module 'date-fns/distance_in_words_to_now/index.js' {
   declare module.exports: $Exports<'date-fns/distance_in_words_to_now/index'>
 }
 declare module 'date-fns/distance_in_words/index.js' {
-  declare module.exports: $Exports<'date-fns/distance_in_words/index'>
+  declare module.exports: $Exports<'date-fns/distance_in_words'>
 }
 declare module 'date-fns/each_day/index.js' {
   declare module.exports: $Exports<'date-fns/each_day/index'>

@@ -2,11 +2,11 @@
 
 import * as WejayApi from '__generated__/types.flow'
 import React from 'react'
-import Cover from 'components/Cover'
-import Gravatar from 'components/Gravatar'
+import Cover from 'components/Cover/Cover'
+import Gravatar from 'components/Gravatar/Gravatar'
 import TrackDuration from './TrackDuration'
-import TrackArtist from './TrackArtist'
 import styled from 'styled-components'
+import TrackMeta from './TrackMeta'
 
 type TrackProps = {
   track: WejayApi.TrackInfoFragment,
@@ -17,17 +17,8 @@ const TrackRow = styled.div`
   border-bottom: 1px solid #eaecef;
   display: grid;
   grid-column-gap: 20px;
-  grid-template-columns: 40px 1fr 40px 30px;
-  padding: 15px 20px;
-`
-
-export const TrackMeta = styled.div`
-  line-height: 1.4;
-`
-
-export const TrackName = styled.div`
-  color: rgba(54, 61, 67, 0.6);
-  font-size: 12px;
+  grid-template-columns: auto 1fr auto auto;
+  padding: 15px 0;
 `
 
 const TrackItem = ({ track }: TrackProps) => {
@@ -39,11 +30,7 @@ const TrackItem = ({ track }: TrackProps) => {
     <TrackRow>
       <Cover small track={track} width={40} />
 
-      <TrackMeta>
-        <TrackArtist artists={track.artists} />
-        <TrackName>{track.name}</TrackName>
-      </TrackMeta>
-
+      <TrackMeta artists={track.artists} name={track.name} />
       <TrackDuration duration={track.duration} />
 
       <Gravatar id={track.user.id} size={30} />

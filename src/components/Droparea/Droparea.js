@@ -1,28 +1,35 @@
 // @flow
 
-import './Droparea.css'
 import React, { Component } from 'react'
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag'
-import { roomQuery } from 'views/Room/RoomContainer'
-import classnames from 'classnames'
-import md5 from 'md5'
+import styled from 'styled-components'
 
-type Props = {
-  message?: string,
-  mutate: Function,
-  roomName: string,
+type DropareaProps = {
+  addToQueue: (spotifyId: string) => Promise<void>,
 }
 
-type State = {
+type DropareaState = {
   isDragOver: boolean,
 }
 
-export class Droparea extends Component<Props, State> {
-  static defaultProps = {
-    message: 'Drop it like it\'s hot!',
-  }
+const Dropzone = styled.textarea`
+  background: ${({ isDragging }) =>
+    isDragging ? 'rgba(255, 134, 0, 0.2)' : 'none'};
+  border: 0;
+  bottom: 0;
+  color: transparent;
+  cursor: default;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  resize: none;
+  width: 100%;
 
+  &:focus {
+    outline: none;
+  }
+`
+
+export class Droparea extends Component<DropareaProps, DropareaState> {
   state = {
     isDragOver: false,
   }
@@ -48,9 +55,6 @@ export class Droparea extends Component<Props, State> {
   }
 
   onDrop = (e: SyntheticDragEvent<HTMLTextAreaElement>) => {
-    const { mutate, roomName } = this.props
-    const userId = md5(localStorage.getItem('user'))
-
     e.stopPropagation()
     e.preventDefault()
 
@@ -60,64 +64,7 @@ export class Droparea extends Component<Props, State> {
       .split('\n')
 
     songs.reverse().forEach(track => {
-      mutate({
-        variables: {
-          input: {
-            roomName,
-            userId,
-            spotifyId: track,
-          },
-        },
-        optimisticResponse: {
-          queueTrack: {
-            album: [],
-            artists: [
-              {
-                name: 'Loading',
-                __typename: 'Artist',
-              },
-            ],
-            duration: 0,
-            name: 'Awesome track',
-            spotifyUri: track,
-            started: 0,
-            user: {
-              email: '',
-              id: userId,
-              __typename: 'User',
-            },
-            __typename: 'Track',
-          },
-        },
-        update: (store, { data: { queueTrack } }) => {
-          const data = store.readQuery({
-            query: roomQuery,
-            variables: {
-              name: roomName,
-            },
-          })
-
-          const exists = data.room.queue.find(
-            track => track.spotifyUri === queueTrack.spotifyUri
-          )
-
-          const notCurrent =
-            data.room.currentTrack &&
-            data.room.currentTrack.spotifyUri !== queueTrack.spotifyUri
-
-          if (!exists && notCurrent) {
-            data.room.queue.push(queueTrack)
-          }
-
-          store.writeQuery({
-            query: roomQuery,
-            variables: {
-              name: roomName,
-            },
-            data,
-          })
-        },
-      })
+      this.props.addToQueue(track)
     })
 
     this.setState({
@@ -127,43 +74,16 @@ export class Droparea extends Component<Props, State> {
 
   render () {
     return (
-      <div className="Droparea__wrap">
-        <textarea
-          className={classnames('Droparea', {
-            'Droparea--is-dragging': this.state.isDragOver,
-          })}
-          defaultValue={this.props.message}
-          onDragEnter={this.onDragEnter}
-          onDragLeave={this.onDragLeave}
-          onDrop={this.onDrop}
-          spellCheck={false}
-        />
-      </div>
+      <Dropzone
+        defaultValue=""
+        isDragging={this.state.isDragOver}
+        onDragEnter={this.onDragEnter}
+        onDragLeave={this.onDragLeave}
+        onDrop={this.onDrop}
+        spellCheck={false}
+      />
     )
   }
 }
 
-const addTrackMutation = gql`
-  mutation queueTrack($input: QueueInput!) {
-    queueTrack(input: $input) {
-      album {
-        images {
-          url
-        }
-        name
-      }
-      artists {
-        name
-      }
-      duration
-      name
-      spotifyUri
-      user {
-        email
-        id
-      }
-    }
-  }
-`
-
-export default graphql(addTrackMutation)(Droparea)
+export default Droparea
