@@ -10,7 +10,33 @@ exports[`components/Room renders Room 1`] = `
       numberOfUsers={0}
       queue={Array []}
     />
-    <Apollo(RoomSearch) />
+    <Apollo(RoomSearch)
+      currentQueue={Array []}
+      currentTrack={
+        Object {
+          "album": Object {
+            "images": Array [],
+            "name": "test",
+          },
+          "artists": Array [
+            Object {
+              "name": "artist",
+            },
+            Object {
+              "name": "artist two",
+            },
+          ],
+          "duration": 123132,
+          "name": "track",
+          "spotifyUri": "12314",
+          "started": null,
+          "user": Object {
+            "email": "cookie@monster.com",
+            "id": "1337",
+          },
+        }
+      }
+    />
     <TrackList
       tracks={Array []}
     />
