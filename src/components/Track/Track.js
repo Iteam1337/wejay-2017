@@ -33,7 +33,7 @@ const TrackItem = ({ track }: TrackProps) => {
       <TrackMeta artists={track.artists} name={track.name} />
       <TrackDuration duration={track.duration} />
 
-      <Gravatar id={track.user.id} size={30} />
+      {track.user && <Gravatar id={track.user.id} size={30} />}
     </TrackRow>
   )
 }

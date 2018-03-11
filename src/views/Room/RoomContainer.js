@@ -169,6 +169,7 @@ export const roomQuery = gql`
       currentTrack {
         ...TrackInfo
       }
+      isPlaying
       name
       users {
         ...UserInfo
@@ -189,6 +190,7 @@ export const roomUpdated = gql`
       currentTrack {
         ...TrackInfo
       }
+      isPlaying
       name
       users {
         ...UserInfo

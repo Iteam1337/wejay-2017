@@ -13,39 +13,20 @@ export type JoinRoomInput = {|
   email: string,
 |};
 
-export type queueTrackMutationVariables = {|
-  input: QueueInput,
+export type pauseMutationVariables = {|
+  roomName: string,
 |};
 
-export type queueTrackMutation = {|
-  queueTrack: {|
-    album: {|
-      images:  Array< {|
-        url: string,
-      |} >,
-      name: string,
-    |},
-    artists:  Array< {|
-      name: string,
-    |} >,
-    duration: number,
-    name: string,
-    spotifyUri: string,
-    user: {|
-      email: string,
-      id: string,
-    |},
-  |},
+export type pauseMutation = {|
+  pause: ?boolean,
 |};
 
-export type joinRoomMutationVariables = {|
-  input: JoinRoomInput,
+export type playMutationVariables = {|
+  roomName: string,
 |};
 
-export type joinRoomMutation = {|
-  joinRoom: {|
-    name: string,
-  |},
+export type playMutation = {|
+  play: ?boolean,
 |};
 
 export type RoomQueryQueryVariables = {|
@@ -70,13 +51,14 @@ export type RoomQueryQuery = {|
       name: string,
       spotifyUri: string,
       started: ?number,
-      user: {|
+      user: ? {|
         email: string,
         id: string,
       |},
     |},
+    isPlaying: boolean,
     name: string,
-    users:  Array< {|
+    users:  Array<? {|
       email: string,
       id: string,
       lastPlay: number,
@@ -97,7 +79,7 @@ export type RoomQueryQuery = {|
       name: string,
       spotifyUri: string,
       started: ?number,
-      user: {|
+      user: ? {|
         email: string,
         id: string,
       |},
@@ -105,45 +87,73 @@ export type RoomQueryQuery = {|
   |},
 |};
 
-export type queueUpdatedSubscriptionVariables = {|
+export type roomUpdatedSubscriptionVariables = {|
   roomName: string,
 |};
 
-export type queueUpdatedSubscription = {|
-  queueUpdated:  Array< {|
-    album: {|
-      images:  Array< {|
-        height: number,
-        url: string,
-        width: number,
+export type roomUpdatedSubscription = {|
+  roomUpdated: ? {|
+    currentTrack: ? {|
+      album: {|
+        images:  Array< {|
+          height: number,
+          url: string,
+          width: number,
+        |} >,
+        name: string,
+      |},
+      artists:  Array< {|
+        name: string,
       |} >,
+      duration: number,
       name: string,
+      spotifyUri: string,
+      started: ?number,
+      user: ? {|
+        email: string,
+        id: string,
+      |},
     |},
-    artists:  Array< {|
-      name: string,
-    |} >,
-    duration: number,
+    isPlaying: boolean,
     name: string,
-    spotifyUri: string,
-    started: ?number,
-    user: {|
+    users:  Array<? {|
       email: string,
       id: string,
-    |},
-  |} >,
+      lastPlay: number,
+    |} >,
+    queue:  Array< {|
+      album: {|
+        images:  Array< {|
+          height: number,
+          url: string,
+          width: number,
+        |} >,
+        name: string,
+      |},
+      artists:  Array< {|
+        name: string,
+      |} >,
+      duration: number,
+      name: string,
+      spotifyUri: string,
+      started: ?number,
+      user: ? {|
+        email: string,
+        id: string,
+      |},
+    |} >,
+  |},
 |};
 
-export type onNextTrackSubscriptionVariables = {|
-  roomName: string,
+export type queueTrackMutationVariables = {|
+  input: QueueInput,
 |};
 
-export type onNextTrackSubscription = {|
-  onNextTrack: ? {|
+export type queueTrackMutation = {|
+  queueTrack: {|
     album: {|
       images:  Array< {|
-        height: number,
         url: string,
-        width: number,
       |} >,
       name: string,
     |},
@@ -153,23 +163,33 @@ export type onNextTrackSubscription = {|
     duration: number,
     name: string,
     spotifyUri: string,
-    started: ?number,
-    user: {|
+    user: ? {|
       email: string,
       id: string,
     |},
   |},
 |};
 
-export type usersUpdatedSubscriptionVariables = {|
-  roomName: string,
+export type searchMutationVariables = {|
+  query: string,
 |};
 
-export type usersUpdatedSubscription = {|
-  usersUpdated:  Array<? {|
-    email: string,
-    id: string,
-    lastPlay: number,
+export type searchMutation = {|
+  search:  Array< {|
+    album: {|
+      images:  Array< {|
+        height: number,
+        url: string,
+        width: number,
+      |} >,
+      name: string,
+    |},
+    artists:  Array< {|
+      name: string,
+    |} >,
+    duration: number,
+    name: string,
+    spotifyUri: string,
   |} >,
 |};
 
@@ -179,6 +199,16 @@ export type addRoomMutationVariables = {|
 
 export type addRoomMutation = {|
   addRoom: {|
+    name: string,
+  |},
+|};
+
+export type joinRoomMutationVariables = {|
+  input: JoinRoomInput,
+|};
+
+export type joinRoomMutation = {|
+  joinRoom: {|
     name: string,
   |},
 |};
@@ -205,7 +235,7 @@ export type TrackInfoFragment = {|
   name: string,
   spotifyUri: string,
   started: ?number,
-  user: {|
+  user: ? {|
     email: string,
     id: string,
   |},
@@ -215,4 +245,21 @@ export type UserInfoFragment = {|
   email: string,
   id: string,
   lastPlay: number,
+|};
+
+export type SearchTrackInfoFragment = {|
+  album: {|
+    images:  Array< {|
+      height: number,
+      url: string,
+      width: number,
+    |} >,
+    name: string,
+  |},
+  artists:  Array< {|
+    name: string,
+  |} >,
+  duration: number,
+  name: string,
+  spotifyUri: string,
 |};

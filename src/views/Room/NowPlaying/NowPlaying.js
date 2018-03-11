@@ -9,6 +9,7 @@ import TrackMeta from 'components/Track/TrackMeta'
 import NowPlayingPosition from './NowPlayingPosition'
 
 type NowPlayingProps = {
+  isPlaying: boolean,
   track: ?WejayApi.TrackInfoFragment,
 }
 
@@ -33,11 +34,11 @@ const NowPlayingInner = styled.section`
   max-width: 960px;
 
   @media (min-width: 769px) {
-    grid-template-columns: 40px 1fr 400px 30px;
+    grid-template-columns: auto 1fr 400px auto;
   }
 `
 
-const NowPlaying = ({ track }: NowPlayingProps) => {
+const NowPlaying = ({ isPlaying, track }: NowPlayingProps) => {
   if (!track) {
     return null
   }
@@ -48,9 +49,9 @@ const NowPlaying = ({ track }: NowPlayingProps) => {
         <Cover small track={track} width={40} />
 
         <TrackMeta artists={track.artists} name={track.name} />
-        <NowPlayingPosition track={track} />
+        <NowPlayingPosition isPlaying={isPlaying} track={track} />
 
-        <Gravatar id={track.user.id} size={30} />
+        {track.user && <Gravatar id={track.user.id} size={30} />}
       </NowPlayingInner>
     </NowPlayingWrap>
   )

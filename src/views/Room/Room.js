@@ -50,10 +50,12 @@ const Room = ({ addToQueue, room }: RoomProps) => {
 
       <RoomWrap>
         <RoomHeader
+          isPlaying={room.isPlaying}
           name={room.name}
           numberOfUsers={room.users.length}
           queue={room.queue}
         />
+
         <Search
           addToQueue={addToQueue}
           currentQueue={room.queue}
@@ -63,7 +65,7 @@ const Room = ({ addToQueue, room }: RoomProps) => {
         <TrackList tracks={room.queue} />
       </RoomWrap>
 
-      <NowPlaying track={room.currentTrack} />
+      <NowPlaying isPlaying={room.isPlaying} track={room.currentTrack} />
     </RoomOuter>
   )
 }
