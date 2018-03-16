@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react'
-import * as WejayApi from '__generated__/types.flow'
+import * as WejayApi from './__generated__/Search'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { Field, Form, Formik } from 'formik'
@@ -15,18 +15,16 @@ import { forceCheck } from 'react-lazyload'
 
 type RoomSearchProps = {
   addToQueue: (spotifyId: string) => Promise<void>,
-  currentQueue: WejayApi.TrackInfoFragment[],
-  currentTrack: WejayApi.TrackInfoFragment,
+  currentQueue: WejayApi.Search_search[],
+  currentTrack: WejayApi.Search_search,
   search: Function,
 }
 
-type SearchFormValues = {
-  query: string,
-}
+type SearchFormValues = WejayApi.SearchVariables
 
 type RoomSearchState = {
   isSearching: boolean,
-  searchResult: WejayApi.TrackInfoFragment[],
+  searchResult: WejayApi.Search_search[],
 }
 
 const SearchOverlay = styled.div`
@@ -135,12 +133,12 @@ const SearchResultsList = styled.div`
 `
 
 class RoomSearch extends React.Component<RoomSearchProps, RoomSearchState> {
-  searchForm: ?Formik
+  searchForm: ?Formik;
 
   state = {
     isSearching: false,
     searchResult: [],
-  }
+  };
 
   handleSearch = async (values: SearchFormValues) => {
     const searchResult = await this.props.search({
@@ -150,13 +148,13 @@ class RoomSearch extends React.Component<RoomSearchProps, RoomSearchState> {
     this.setState(() => ({
       searchResult: searchResult.data.search,
     }))
-  }
+  };
 
   displayOverlay = () => {
     this.setState({
       isSearching: true,
     })
-  }
+  };
 
   hideOverlay = () => {
     this.setState(
@@ -172,7 +170,7 @@ class RoomSearch extends React.Component<RoomSearchProps, RoomSearchState> {
         }
       }
     )
-  }
+  };
 
   render () {
     const { isSearching, searchResult } = this.state
@@ -230,8 +228,8 @@ class RoomSearch extends React.Component<RoomSearchProps, RoomSearchState> {
   }
 }
 
-const searchMutation = gql`
-  mutation search($query: String!) {
+const SearchMutation = gql`
+  mutation Search($query: String!) {
     search(query: $query) {
       ...SearchTrackInfo
     }
@@ -255,4 +253,4 @@ const searchMutation = gql`
   }
 `
 
-export default graphql(searchMutation, { name: 'search' })(RoomSearch)
+export default graphql(SearchMutation, { name: 'search' })(RoomSearch)

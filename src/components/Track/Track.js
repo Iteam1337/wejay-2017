@@ -1,6 +1,6 @@
 // @flow
 
-import * as WejayApi from '__generated__/types.flow'
+import * as WejayApi from 'views/Room/__generated__/TrackInfo'
 import React from 'react'
 import Cover from 'components/Cover/Cover'
 import Gravatar from 'components/Gravatar/Gravatar'
@@ -9,7 +9,7 @@ import styled from 'styled-components'
 import TrackMeta from './TrackMeta'
 
 type TrackProps = {
-  track: WejayApi.TrackInfoFragment,
+  track: WejayApi.TrackInfo,
 }
 
 const TrackRow = styled.div`

@@ -1,9 +1,9 @@
 // @flow
 
 import React from 'react'
+import * as WejayApi from './__generated__/RoomQuery'
 import styled from 'styled-components'
 import humanizeDuration from 'humanize-duration'
-import type { RoomType } from './Room'
 import pluralize from 'pluralize'
 import PlayButton from './PlayButton'
 
@@ -11,7 +11,7 @@ type RoomHeaderProps = {
   isPlaying: boolean,
   name: string,
   numberOfUsers: number,
-  queue: $PropertyType<RoomType, 'queue'>,
+  queue: WejayApi.RoomQuery_room_queue[],
 }
 
 const RoomHeaderWrap = styled.div`
@@ -27,7 +27,7 @@ const PlaylistTitle = styled.div`
 
 const RoomName = styled.div`
   color: ${({ theme }) => theme.colors.primary};
-  font-family: 'Roboto Slab';
+  font-family: "Roboto Slab";
   font-size: 32px;
   font-weight: 400;
   line-height: 1.5;
@@ -35,7 +35,7 @@ const RoomName = styled.div`
 
 const RoomMeta = styled.div`
   color: rgba(54, 61, 67, 1);
-  font-family: 'Roboto Slab';
+  font-family: "Roboto Slab";
   font-size: 14px;
   font-weight: 400;
 `

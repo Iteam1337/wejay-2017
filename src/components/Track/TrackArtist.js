@@ -1,11 +1,11 @@
 // @flow
 
-import * as WejayApi from '__generated__/types.flow'
+import * as WejayApi from 'views/Room/__generated__/TrackInfo'
 import React from 'react'
 import styled from 'styled-components'
 
 type TrackArtistProps = {
-  artists: $PropertyType<WejayApi.TrackInfoFragment, 'artists'>,
+  artists: $PropertyType<WejayApi.TrackInfo, "artists">,
 }
 
 const TrackArtistItem = styled.div`

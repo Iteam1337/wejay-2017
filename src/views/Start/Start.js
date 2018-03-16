@@ -2,7 +2,7 @@
 
 import './Start.css'
 import * as Wejay from 'typings/wejay.flow'
-import * as WejayApi from '__generated__/types.flow'
+import * as WejayApi from './__generated__/StartQuery'
 import React, { Component } from 'react'
 import Rooms from './Rooms/Rooms'
 import AddRoom from './AddRoom'
@@ -10,19 +10,19 @@ import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
 type Props = {
-  data: Wejay.ApolloBase<WejayApi.StartQueryQuery>,
+  data: Wejay.ApolloBase<WejayApi.StartQuery>,
 }
 
 type State = {
-  user: string,
   hasUser: boolean,
+  user: string,
 }
 
 export class Start extends Component<Props, State> {
   state = {
     user: '',
     hasUser: false,
-  }
+  };
 
   componentDidMount () {
     if (localStorage.getItem('user')) {
@@ -39,13 +39,13 @@ export class Start extends Component<Props, State> {
     this.setState(() => ({
       hasUser: true,
     }))
-  }
+  };
 
   updateEmail = (event: { target: { value: string } }) => {
     this.setState({
       user: event.target.value,
     })
-  }
+  };
 
   render () {
     const { data: { error, loading, rooms } } = this.props
@@ -93,7 +93,7 @@ export class Start extends Component<Props, State> {
   }
 }
 
-export const startQuery = gql`
+export const StartQuery = gql`
   query StartQuery {
     rooms {
       name
@@ -101,4 +101,4 @@ export const startQuery = gql`
   }
 `
 
-export default graphql(startQuery)(Start)
+export default graphql(StartQuery)(Start)

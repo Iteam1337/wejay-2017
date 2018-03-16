@@ -1,7 +1,7 @@
 // @flow
 
 import * as Wejay from 'typings/wejay.flow'
-import * as WejayApi from '__generated__/types.flow'
+import * as WejayApi from './__generated__/RoomQuery'
 import React, { Component } from 'react'
 import Room from './Room'
 import gql from 'graphql-tag'
@@ -9,8 +9,8 @@ import { compose, graphql } from 'react-apollo'
 import md5 from 'md5'
 
 type RoomContainerProps = {
-  addTrack: (options: Object) => Promise<WejayApi.TrackInfoFragment>,
-  data: Wejay.ApolloBase<WejayApi.RoomQueryQuery>,
+  addTrack: (options: Object) => Promise<void>,
+  data: Wejay.ApolloBase<WejayApi.RoomQuery>,
   match: {
     params: {
       name: string,
@@ -23,7 +23,7 @@ class RoomContainer extends Component<RoomContainerProps> {
     const roomName = this.props.match.params.name
 
     this.props.data.subscribeToMore({
-      document: roomUpdated,
+      document: RoomUpdated,
       variables: {
         roomName,
       },
@@ -82,7 +82,7 @@ class RoomContainer extends Component<RoomContainerProps> {
       },
       update: (store, { data: { queueTrack } }) => {
         const data = store.readQuery({
-          query: roomQuery,
+          query: RoomQuery,
           variables: {
             name: roomName,
           },
@@ -101,7 +101,7 @@ class RoomContainer extends Component<RoomContainerProps> {
         }
 
         store.writeQuery({
-          query: roomQuery,
+          query: RoomQuery,
           variables: {
             name: roomName,
           },
@@ -109,7 +109,7 @@ class RoomContainer extends Component<RoomContainerProps> {
         })
       },
     })
-  }
+  };
 
   render () {
     const { data: { error, loading, room } } = this.props
@@ -163,7 +163,7 @@ const UserInfoFragment = gql`
   }
 `
 
-export const roomQuery = gql`
+export const RoomQuery = gql`
   query RoomQuery($name: String!) {
     room(name: $name) {
       currentTrack {
@@ -184,8 +184,8 @@ export const roomQuery = gql`
   ${UserInfoFragment}
 `
 
-export const roomUpdated = gql`
-  subscription roomUpdated($roomName: String!) {
+export const RoomUpdated = gql`
+  subscription RoomUpdated($roomName: String!) {
     roomUpdated(roomName: $roomName) {
       currentTrack {
         ...TrackInfo
@@ -205,8 +205,8 @@ export const roomUpdated = gql`
   ${UserInfoFragment}
 `
 
-const addTrackMutation = gql`
-  mutation queueTrack($input: QueueInput!) {
+const AddTrackMutation = gql`
+  mutation QueueTrack($input: QueueInput!) {
     queueTrack(input: $input) {
       album {
         images {
@@ -229,10 +229,10 @@ const addTrackMutation = gql`
 `
 
 export default compose(
-  graphql(roomQuery, {
+  graphql(RoomQuery, {
     options: props => ({
       variables: { name: props.match.params.name },
     }),
   }),
-  graphql(addTrackMutation, { name: 'addTrack' })
+  graphql(AddTrackMutation, { name: 'addTrack' })
 )(RoomContainer)

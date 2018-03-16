@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react'
-import * as WejayApi from '__generated__/types.flow'
+import * as WejayApi from './__generated__/RoomQuery'
 import NowPlaying from './NowPlaying/NowPlaying'
 import Droparea from 'components/Droparea/Droparea'
 import TrackList from 'components/TrackList/TrackList'
@@ -10,10 +10,9 @@ import Search from './Search/Search'
 import WejayHeader from './WejayHeader'
 import styled from 'styled-components'
 
-export type RoomType = $PropertyType<WejayApi.RoomQueryQuery, 'room'>
 type RoomProps = {
   addToQueue: (spotifyId: string) => Promise<void>,
-  room: RoomType,
+  room: WejayApi.RoomQuery_room,
 }
 
 const RoomOuter = styled.section`

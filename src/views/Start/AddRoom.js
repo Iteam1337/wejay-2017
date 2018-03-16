@@ -1,22 +1,21 @@
 // @flow
 
 import React, { Component } from 'react'
+import * as WejayApi from './__generated__/AddRoom'
 import { graphql } from 'react-apollo'
-import { startQuery } from './Start'
+import { StartQuery } from './Start'
 import gql from 'graphql-tag'
 
 type Props = {
   mutate: Function,
 }
 
-type State = {
-  roomName: string,
-}
+type State = WejayApi.AddRoomVariables
 
 export class AddRoom extends Component<Props, State> {
   state = {
     roomName: '',
-  }
+  };
 
   addRoom = (event: SyntheticInputEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -35,24 +34,24 @@ export class AddRoom extends Component<Props, State> {
         },
       },
       update: (store, { data: { addRoom } }) => {
-        const data = store.readQuery({ query: startQuery })
+        const data = store.readQuery({ query: StartQuery })
 
         data.rooms.push(addRoom)
 
-        store.writeQuery({ query: startQuery, data })
+        store.writeQuery({ query: StartQuery, data })
       },
     })
 
     this.setState({
       roomName: '',
     })
-  }
+  };
 
   updateRoomName = (event: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({
       roomName: event.target.value,
     })
-  }
+  };
 
   render () {
     const { roomName } = this.state
@@ -70,7 +69,8 @@ export class AddRoom extends Component<Props, State> {
           <button
             className="Rooms__button"
             disabled={roomName.length === 0}
-            type="submit">
+            type="submit"
+          >
             Add new room
           </button>
         </form>
@@ -80,7 +80,7 @@ export class AddRoom extends Component<Props, State> {
 }
 
 const AddRoomMutation = gql`
-  mutation addRoom($roomName: String!) {
+  mutation AddRoom($roomName: String!) {
     addRoom(roomName: $roomName) {
       name
     }

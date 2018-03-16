@@ -1,6 +1,6 @@
 // @flow
 
-import * as WejayApi from '__generated__/types.flow'
+import * as WejayApi from '../__generated__/RoomQuery'
 import React from 'react'
 import Cover from 'components/Cover/Cover'
 import Gravatar from 'components/Gravatar/Gravatar'
@@ -10,7 +10,7 @@ import NowPlayingPosition from './NowPlayingPosition'
 
 type NowPlayingProps = {
   isPlaying: boolean,
-  track: ?WejayApi.TrackInfoFragment,
+  track: ?WejayApi.RoomQuery_room_currentTrack,
 }
 
 const NowPlayingWrap = styled.section`

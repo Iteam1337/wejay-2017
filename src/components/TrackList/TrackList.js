@@ -1,12 +1,12 @@
 // @flow
 
-import * as WejayApi from '__generated__/types.flow'
+import * as WejayApi from 'views/Room/__generated__/TrackInfo'
 import React from 'react'
 import Track from '../Track/Track'
 import styled from 'styled-components'
 
 type TrackListProps = {
-  tracks: WejayApi.TrackInfoFragment[],
+  tracks: WejayApi.TrackInfo[],
 }
 
 const TrackListWrap = styled.section``

@@ -1,12 +1,13 @@
 // @flow
 
-import * as WejayApi from '__generated__/types.flow'
+import * as WejayApi from 'views/Room/__generated__/TrackInfo'
+import * as WejaySearch from 'views/Room/Search/__generated__/Search'
 import React from 'react'
 import LazyLoad from 'react-lazyload'
 import styled from 'styled-components'
 
 type CoverProps = {
-  track: WejayApi.TrackInfoFragment,
+  track: WejayApi.TrackInfo | WejaySearch.Search_search,
   width?: number,
 }
 

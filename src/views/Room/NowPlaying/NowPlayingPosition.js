@@ -1,13 +1,13 @@
 // @flow
 
 import * as React from 'react'
-import * as WejayApi from '__generated__/types.flow'
+import * as WejayApi from '../__generated__/RoomQuery'
 import styled from 'styled-components'
 import TrackDuration from 'components/Track/TrackDuration'
 
 type NowPlayingPositionProps = {
   isPlaying: boolean,
-  track: WejayApi.TrackInfoFragment,
+  track: WejayApi.RoomQuery_room_currentTrack,
 }
 
 type NowPlayingPositionState = {
@@ -41,12 +41,12 @@ class NowPlayingPosition extends React.Component<
   NowPlayingPositionProps,
   NowPlayingPositionState
 > {
-  timer: IntervalID
+  timer: IntervalID;
 
   state = {
     barWidth: 0,
     playedDuration: 0,
-  }
+  };
 
   componentDidMount () {
     if (this.props.isPlaying) {
@@ -76,7 +76,7 @@ class NowPlayingPosition extends React.Component<
 
   startTrackingDuration = () => {
     this.timer = setInterval(this.updateTimer, 1000)
-  }
+  };
 
   updateTimer = () => {
     const { track } = this.props
@@ -89,7 +89,7 @@ class NowPlayingPosition extends React.Component<
           ? state.playedDuration + 1000
           : Date.now() - started,
     }))
-  }
+  };
 
   render () {
     const { track } = this.props

@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react'
-import * as WejayApi from '__generated__/types.flow'
+import * as WejayApi from './__generated__/Search'
 import Cover from 'components/Cover/Cover'
 import TrackDuration from 'components/Track/TrackDuration'
 import styled from 'styled-components'
@@ -9,9 +9,9 @@ import TrackMeta from 'components/Track/TrackMeta'
 
 type SearchResultProps = {
   addToQueue: (spotifyId: string) => Promise<void>,
-  currentQueue: WejayApi.TrackInfoFragment[],
-  currentTrack: WejayApi.TrackInfoFragment,
-  track: WejayApi.TrackInfoFragment,
+  currentQueue: WejayApi.Search_search[],
+  currentTrack: WejayApi.Search_search,
+  track: WejayApi.Search_search,
 }
 
 const TrackRow = styled.div`
@@ -38,7 +38,7 @@ class SearchResult extends React.Component<SearchResultProps> {
     }
 
     this.props.addToQueue(this.props.track.spotifyUri)
-  }
+  };
 
   existsInQueue = () => {
     const { currentQueue, currentTrack, track } = this.props
@@ -52,7 +52,7 @@ class SearchResult extends React.Component<SearchResultProps> {
       currentTrack && track.spotifyUri === currentTrack.spotifyUri
 
     return inQueue || isCurrent
-  }
+  };
 
   render () {
     const { track } = this.props

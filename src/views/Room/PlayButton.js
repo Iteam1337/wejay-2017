@@ -45,7 +45,7 @@ class PlayButton extends Component<PlayButtonProps> {
     } else {
       play({ variables })
     }
-  }
+  };
 
   render () {
     return (
@@ -56,19 +56,19 @@ class PlayButton extends Component<PlayButtonProps> {
   }
 }
 
-const pauseSubscription = gql`
-  mutation pause($roomName: String!) {
+const PauseSubscription = gql`
+  mutation Pause($roomName: String!) {
     pause(roomName: $roomName)
   }
 `
 
-const playSubscription = gql`
-  mutation play($roomName: String!) {
+const PlaySubscription = gql`
+  mutation Play($roomName: String!) {
     play(roomName: $roomName)
   }
 `
 
 export default compose(
-  graphql(pauseSubscription, { name: 'pause' }),
-  graphql(playSubscription, { name: 'play' })
+  graphql(PauseSubscription, { name: 'pause' }),
+  graphql(PlaySubscription, { name: 'play' })
 )(PlayButton)
