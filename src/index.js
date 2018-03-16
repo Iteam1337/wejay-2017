@@ -1,4 +1,3 @@
-import './index.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Route } from 'react-router-dom'
@@ -6,7 +5,29 @@ import { ApolloProvider } from 'react-apollo'
 import asyncComponent from './asyncComponent'
 import { client } from './apolloSetup'
 import { theme } from './theme'
-import { ThemeProvider } from 'styled-components'
+import { injectGlobal, ThemeProvider } from 'styled-components'
+
+injectGlobal`
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    background-color: #fff;
+    color: #afafc7;
+    font-family: 'Roboto', Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+`
 
 const StartAsync = asyncComponent(() => import('./views/Start/Start'))
 const RoomAsync = asyncComponent(() => import('./views/Room/RoomContainer'))

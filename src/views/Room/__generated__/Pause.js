@@ -1,3 +1,5 @@
+
+
 /* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
@@ -24,12 +26,12 @@ export type PauseVariables = {
 export type QueueInput = {
   roomName: string,
   spotifyId: string,
-  userId: string
+  userId: string,
 };
 
 export type JoinRoomInput = {
   roomName: string,
-  email: string
+  email: string,
 };
 
 //==============================================================

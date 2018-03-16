@@ -1,18 +1,39 @@
-import './Gravatar.css'
+// @flow
+
 import React from 'react'
 import md5 from 'md5'
-import classnames from 'classnames'
+import styled from 'styled-components'
 
-type GravatarProps = {
+type Props = {
   alt?: string,
-  className?: string,
   email?: string,
   id?: string,
-  size: number
+  size: number,
 }
 
-const Gravatar = ({ className, email, id, alt, size }: GravatarProps) => {
+const Wrap = styled.div.attrs({
+  size: ({ size }) => `${size}px`,
+})`
+  border-radius: 100%;
+  flex: 1;
+  height: ${({ size }) => size};
+  max-width: ${({ size }) => size || '40px'};
+  overflow: hidden;
+  transition: all 200ms ease-in-out;
+  width: ${({ size }) => size};
+`
+
+const Avatar = styled.img`
+  display: block;
+  max-width: 100%;
+`
+
+const Gravatar = ({ email = '', id, alt, size }: Props) => {
   let address = email || id
+
+  if (!address) {
+    return null
+  }
 
   if (email && email.length > 0) {
     address = md5(email)
@@ -25,17 +46,10 @@ const Gravatar = ({ className, email, id, alt, size }: GravatarProps) => {
   }
 
   return (
-    <div
-      className={classnames('Gravatar', className)}
-      style={{ maxWidth: size, width: size, height: size }}
-    >
-      <img alt={alt} className="Gravatar__image" src={gravatar} />
-    </div>
+    <Wrap size={size}>
+      <Avatar alt={alt} src={gravatar} />
+    </Wrap>
   )
-}
-
-Gravatar.defaultProps = {
-  email: '',
 }
 
 export default Gravatar

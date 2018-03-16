@@ -1,3 +1,5 @@
+
+
 /* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
@@ -9,7 +11,7 @@
 export type UserInfo = {
   email: string,
   id: string,
-  lastPlay: number
+  lastPlay: number,
 };
 
 //==============================================================
@@ -22,12 +24,12 @@ export type UserInfo = {
 export type QueueInput = {
   roomName: string,
   spotifyId: string,
-  userId: string
+  userId: string,
 };
 
 export type JoinRoomInput = {
   roomName: string,
-  email: string
+  email: string,
 };
 
 //==============================================================

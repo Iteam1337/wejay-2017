@@ -6,7 +6,7 @@ import React, { Component } from 'react'
 import Room from './Room'
 import gql from 'graphql-tag'
 import { compose, graphql } from 'react-apollo'
-import md5 from 'md5'
+import * as storage from '../../utils/storage'
 
 type RoomContainerProps = {
   addTrack: (options: Object) => Promise<void>,
@@ -45,13 +45,14 @@ class RoomContainer extends Component<RoomContainerProps> {
 
   addToQueue = async spotifyId => {
     const roomName = this.props.match.params.name
-    const userId = md5(localStorage.getItem('user'))
+    const savedId = localStorage.getItem('id')
+    const { id } = await storage.getValue(savedId)
 
     await this.props.addTrack({
       variables: {
         input: {
           roomName,
-          userId,
+          userId: id,
           spotifyId,
         },
       },
@@ -73,8 +74,8 @@ class RoomContainer extends Component<RoomContainerProps> {
           spotifyUri: spotifyId,
           started: 0,
           user: {
+            id,
             email: '',
-            id: userId,
             __typename: 'User',
           },
           __typename: 'Track',

@@ -1,3 +1,5 @@
+
+
 /* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
@@ -12,7 +14,7 @@ export type QueueTrack_queueTrack_album_images = {
 
 export type QueueTrack_queueTrack_album = {
   images: Array<QueueTrack_queueTrack_album_images>,
-  name: string
+  name: string,
 };
 
 export type QueueTrack_queueTrack_artists = {
@@ -21,7 +23,7 @@ export type QueueTrack_queueTrack_artists = {
 
 export type QueueTrack_queueTrack_user = {
   email: string,
-  id: string
+  id: string,
 };
 
 export type QueueTrack_queueTrack = {
@@ -30,7 +32,7 @@ export type QueueTrack_queueTrack = {
   duration: number,
   name: string,
   spotifyUri: string,
-  user: ?QueueTrack_queueTrack_user
+  user: ?QueueTrack_queueTrack_user,
 };
 
 export type QueueTrack = {
@@ -51,12 +53,12 @@ export type QueueTrackVariables = {
 export type QueueInput = {
   roomName: string,
   spotifyId: string,
-  userId: string
+  userId: string,
 };
 
 export type JoinRoomInput = {
   roomName: string,
-  email: string
+  email: string,
 };
 
 //==============================================================

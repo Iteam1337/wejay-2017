@@ -1,3 +1,5 @@
+
+
 /* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
@@ -9,12 +11,12 @@
 export type RoomQuery_room_currentTrack_album_images = {
   height: number,
   url: string,
-  width: number
+  width: number,
 };
 
 export type RoomQuery_room_currentTrack_album = {
   images: Array<RoomQuery_room_currentTrack_album_images>,
-  name: string
+  name: string,
 };
 
 export type RoomQuery_room_currentTrack_artists = {
@@ -23,7 +25,7 @@ export type RoomQuery_room_currentTrack_artists = {
 
 export type RoomQuery_room_currentTrack_user = {
   email: string,
-  id: string
+  id: string,
 };
 
 export type RoomQuery_room_currentTrack = {
@@ -33,24 +35,24 @@ export type RoomQuery_room_currentTrack = {
   name: string,
   spotifyUri: string,
   started: ?number,
-  user: ?RoomQuery_room_currentTrack_user
+  user: ?RoomQuery_room_currentTrack_user,
 };
 
 export type RoomQuery_room_users = {
   email: string,
   id: string,
-  lastPlay: number
+  lastPlay: number,
 };
 
 export type RoomQuery_room_queue_album_images = {
   height: number,
   url: string,
-  width: number
+  width: number,
 };
 
 export type RoomQuery_room_queue_album = {
   images: Array<RoomQuery_room_queue_album_images>,
-  name: string
+  name: string,
 };
 
 export type RoomQuery_room_queue_artists = {
@@ -59,7 +61,7 @@ export type RoomQuery_room_queue_artists = {
 
 export type RoomQuery_room_queue_user = {
   email: string,
-  id: string
+  id: string,
 };
 
 export type RoomQuery_room_queue = {
@@ -69,7 +71,7 @@ export type RoomQuery_room_queue = {
   name: string,
   spotifyUri: string,
   started: ?number,
-  user: ?RoomQuery_room_queue_user
+  user: ?RoomQuery_room_queue_user,
 };
 
 export type RoomQuery_room = {
@@ -77,7 +79,7 @@ export type RoomQuery_room = {
   isPlaying: boolean,
   name: string,
   users: Array<?RoomQuery_room_users>,
-  queue: Array<RoomQuery_room_queue>
+  queue: Array<RoomQuery_room_queue>,
 };
 
 export type RoomQuery = {
@@ -98,12 +100,12 @@ export type RoomQueryVariables = {
 export type QueueInput = {
   roomName: string,
   spotifyId: string,
-  userId: string
+  userId: string,
 };
 
 export type JoinRoomInput = {
   roomName: string,
-  email: string
+  email: string,
 };
 
 //==============================================================

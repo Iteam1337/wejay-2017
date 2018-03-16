@@ -1,3 +1,5 @@
+
+
 /* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
@@ -9,12 +11,12 @@
 export type RoomUpdated_roomUpdated_currentTrack_album_images = {
   height: number,
   url: string,
-  width: number
+  width: number,
 };
 
 export type RoomUpdated_roomUpdated_currentTrack_album = {
   images: Array<RoomUpdated_roomUpdated_currentTrack_album_images>,
-  name: string
+  name: string,
 };
 
 export type RoomUpdated_roomUpdated_currentTrack_artists = {
@@ -23,7 +25,7 @@ export type RoomUpdated_roomUpdated_currentTrack_artists = {
 
 export type RoomUpdated_roomUpdated_currentTrack_user = {
   email: string,
-  id: string
+  id: string,
 };
 
 export type RoomUpdated_roomUpdated_currentTrack = {
@@ -33,24 +35,24 @@ export type RoomUpdated_roomUpdated_currentTrack = {
   name: string,
   spotifyUri: string,
   started: ?number,
-  user: ?RoomUpdated_roomUpdated_currentTrack_user
+  user: ?RoomUpdated_roomUpdated_currentTrack_user,
 };
 
 export type RoomUpdated_roomUpdated_users = {
   email: string,
   id: string,
-  lastPlay: number
+  lastPlay: number,
 };
 
 export type RoomUpdated_roomUpdated_queue_album_images = {
   height: number,
   url: string,
-  width: number
+  width: number,
 };
 
 export type RoomUpdated_roomUpdated_queue_album = {
   images: Array<RoomUpdated_roomUpdated_queue_album_images>,
-  name: string
+  name: string,
 };
 
 export type RoomUpdated_roomUpdated_queue_artists = {
@@ -59,7 +61,7 @@ export type RoomUpdated_roomUpdated_queue_artists = {
 
 export type RoomUpdated_roomUpdated_queue_user = {
   email: string,
-  id: string
+  id: string,
 };
 
 export type RoomUpdated_roomUpdated_queue = {
@@ -69,7 +71,7 @@ export type RoomUpdated_roomUpdated_queue = {
   name: string,
   spotifyUri: string,
   started: ?number,
-  user: ?RoomUpdated_roomUpdated_queue_user
+  user: ?RoomUpdated_roomUpdated_queue_user,
 };
 
 export type RoomUpdated_roomUpdated = {
@@ -77,7 +79,7 @@ export type RoomUpdated_roomUpdated = {
   isPlaying: boolean,
   name: string,
   users: Array<?RoomUpdated_roomUpdated_users>,
-  queue: Array<RoomUpdated_roomUpdated_queue>
+  queue: Array<RoomUpdated_roomUpdated_queue>,
 };
 
 export type RoomUpdated = {
@@ -98,12 +100,12 @@ export type RoomUpdatedVariables = {
 export type QueueInput = {
   roomName: string,
   spotifyId: string,
-  userId: string
+  userId: string,
 };
 
 export type JoinRoomInput = {
   roomName: string,
-  email: string
+  email: string,
 };
 
 //==============================================================

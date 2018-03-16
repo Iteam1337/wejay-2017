@@ -1,3 +1,5 @@
+
+
 /* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
@@ -9,12 +11,12 @@
 export type TrackInfo_album_images = {
   height: number,
   url: string,
-  width: number
+  width: number,
 };
 
 export type TrackInfo_album = {
   images: Array<TrackInfo_album_images>,
-  name: string
+  name: string,
 };
 
 export type TrackInfo_artists = {
@@ -23,7 +25,7 @@ export type TrackInfo_artists = {
 
 export type TrackInfo_user = {
   email: string,
-  id: string
+  id: string,
 };
 
 export type TrackInfo = {
@@ -33,7 +35,7 @@ export type TrackInfo = {
   name: string,
   spotifyUri: string,
   started: ?number,
-  user: ?TrackInfo_user
+  user: ?TrackInfo_user,
 };
 
 //==============================================================
@@ -46,12 +48,12 @@ export type TrackInfo = {
 export type QueueInput = {
   roomName: string,
   spotifyId: string,
-  userId: string
+  userId: string,
 };
 
 export type JoinRoomInput = {
   roomName: string,
-  email: string
+  email: string,
 };
 
 //==============================================================

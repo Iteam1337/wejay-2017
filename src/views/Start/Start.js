@@ -1,13 +1,17 @@
 // @flow
 
-import './Start.css'
+import * as React from 'react'
 import * as Wejay from 'typings/wejay.flow'
 import * as WejayApi from './__generated__/StartQuery'
-import React, { Component } from 'react'
-import Rooms from './Rooms/Rooms'
-import AddRoom from './AddRoom'
+import Rooms from './Rooms/RoomsContainer'
+import AddRoom from './AddRoom/AddRoomContainer'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import AddUserForm from './AddUserForm'
+import type { FormValues } from './AddUserForm'
+import * as storage from '../../utils/storage'
+import md5 from 'md5'
+import styled from 'styled-components'
 
 type Props = {
   data: Wejay.ApolloBase<WejayApi.StartQuery>,
@@ -15,41 +19,59 @@ type Props = {
 
 type State = {
   hasUser: boolean,
-  user: string,
 }
 
-export class Start extends Component<Props, State> {
+const Wrap = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+`
+
+const Content = styled.div`
+  max-width: 300px;
+`
+
+const Separator = styled.div`
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 1px;
+  border: 0;
+  margin-bottom: 20px;
+  margin-top: 20px;
+`
+
+export class Start extends React.Component<Props, State> {
   state = {
-    user: '',
     hasUser: false,
   };
 
-  componentDidMount () {
-    if (localStorage.getItem('user')) {
-      this.setState(() => ({
-        hasUser: true,
-      }))
+  async componentDidMount () {
+    const id = localStorage.getItem('id')
+
+    if (id && !!await storage.getValue(id)) {
+      this.hasUser()
     }
   }
 
-  saveEmail = () => {
-    const { user } = this.state
-    localStorage.setItem('user', user)
+  saveUser = async ({ email }: FormValues) => {
+    const id = md5(email)
 
-    this.setState(() => ({
-      hasUser: true,
-    }))
+    await storage.put({ id, email })
+    localStorage.setItem('id', id)
+
+    this.hasUser()
   };
 
-  updateEmail = (event: { target: { value: string } }) => {
+  hasUser = () => {
     this.setState({
-      user: event.target.value,
+      hasUser: true,
     })
   };
 
   render () {
     const { data: { error, loading, rooms } } = this.props
-    const { hasUser, user } = this.state
+    const { hasUser } = this.state
 
     if (loading) {
       return <div className="Loader">Loading</div>
@@ -60,35 +82,19 @@ export class Start extends Component<Props, State> {
     }
 
     return (
-      <div className="Start">
-        <div className="Start__content">
-          <div className="Start__rooms">
-            {!hasUser && (
-              <div>
-                <input
-                  className="Input"
-                  onChange={this.updateEmail}
-                  placeholder="E-mail"
-                />
-                <button
-                  className="Rooms__button"
-                  disabled={user.length === 0}
-                  onClick={this.saveEmail}
-                >
-                  Save user
-                </button>
-              </div>
-            )}
-            {hasUser && (
-              <div>
-                <Rooms rooms={rooms} />
-                <hr className="Start__separator" />
-                <AddRoom />
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+      <Wrap>
+        <Content>
+          {!hasUser && <AddUserForm saveUser={this.saveUser} />}
+
+          {hasUser && (
+            <React.Fragment>
+              <Rooms rooms={rooms} />
+              <Separator />
+              <AddRoom />
+            </React.Fragment>
+          )}
+        </Content>
+      </Wrap>
     )
   }
 }
