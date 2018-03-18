@@ -22,7 +22,11 @@ const AddRoom = ({ addRoom }: Props) => {
       onSubmit={addRoom}
       render={({ isValid }) => (
         <Form>
-          <FormInput name="roomName" placeholder="Room name" />
+          <FormInput
+            dataCy="room-name"
+            name="roomName"
+            placeholder="Room name"
+          />
 
           <Button disabled={!isValid} type="submit">
             Add new room
