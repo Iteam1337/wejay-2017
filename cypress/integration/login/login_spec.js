@@ -49,7 +49,7 @@ describe('Login page', () => {
       .should('eq', 'd34479239e70df24688f16b94add383f')
   })
 
-  it.only('should add a room', () => {
+  it('should add a room', () => {
     cy.get('[data-test="email"]').type('cookie@monster.com')
     cy.contains('Save user').click()
 
