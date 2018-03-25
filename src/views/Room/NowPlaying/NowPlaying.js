@@ -6,11 +6,10 @@ import Cover from 'components/Cover/Cover'
 import Gravatar from 'components/Gravatar/Gravatar'
 import styled from 'styled-components'
 import TrackMeta from 'components/Track/TrackMeta'
-import NowPlayingPosition from './NowPlayingPosition'
+import { RoomContext } from '../RoomContainer'
 
-type NowPlayingProps = {
-  isPlaying: boolean,
-  track: ?WejayApi.RoomQuery_room_currentTrack,
+type Props = {
+  room: WejayApi.RoomQuery_room,
 }
 
 const NowPlayingWrap = styled.section`
@@ -34,26 +33,39 @@ const NowPlayingInner = styled.section`
   max-width: 960px;
 
   @media (min-width: 769px) {
-    grid-template-columns: auto 1fr 400px auto;
+    grid-template-columns: auto 1fr auto;
   }
 `
 
-const NowPlaying = ({ isPlaying, track }: NowPlayingProps) => {
-  if (!track) {
-    return null
-  }
-
+const NowPlaying = () => {
   return (
-    <NowPlayingWrap>
-      <NowPlayingInner>
-        <Cover small track={track} width={40} />
+    <RoomContext.Consumer>
+      {({ room }: Props) => {
+        console.log(room)
+        const { currentTrack } = room
 
-        <TrackMeta artists={track.artists} name={track.name} />
-        <NowPlayingPosition isPlaying={isPlaying} track={track} />
+        if (!currentTrack) {
+          return null
+        }
 
-        {track.user && <Gravatar id={track.user.id} size={30} />}
-      </NowPlayingInner>
-    </NowPlayingWrap>
+        return (
+          <NowPlayingWrap>
+            <NowPlayingInner>
+              <Cover small track={currentTrack} width={40} />
+
+              <TrackMeta
+                artists={currentTrack.artists}
+                name={currentTrack.name}
+              />
+
+              {currentTrack.user && (
+                <Gravatar id={currentTrack.user.id} size={30} />
+              )}
+            </NowPlayingInner>
+          </NowPlayingWrap>
+        )
+      }}
+    </RoomContext.Consumer>
   )
 }
 

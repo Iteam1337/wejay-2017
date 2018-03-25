@@ -133,12 +133,12 @@ const SearchResultsList = styled.div`
 `
 
 class RoomSearch extends React.Component<RoomSearchProps, RoomSearchState> {
-  searchForm: ?Formik;
+  searchForm: ?Formik
 
   state = {
     isSearching: false,
     searchResult: [],
-  };
+  }
 
   handleSearch = async (values: SearchFormValues) => {
     const searchResult = await this.props.search({
@@ -148,13 +148,13 @@ class RoomSearch extends React.Component<RoomSearchProps, RoomSearchState> {
     this.setState(() => ({
       searchResult: searchResult.data.search,
     }))
-  };
+  }
 
   displayOverlay = () => {
     this.setState({
       isSearching: true,
     })
-  };
+  }
 
   hideOverlay = () => {
     this.setState(
@@ -170,7 +170,7 @@ class RoomSearch extends React.Component<RoomSearchProps, RoomSearchState> {
         }
       }
     )
-  };
+  }
 
   render () {
     const { isSearching, searchResult } = this.state

@@ -2,7 +2,7 @@
 
 import * as Wejay from 'typings/wejay.flow'
 import * as WejayApi from './__generated__/RoomQuery'
-import React, { Component } from 'react'
+import React, { createContext, Component } from 'react'
 import Room from './Room'
 import gql from 'graphql-tag'
 import { compose, graphql } from 'react-apollo'
@@ -17,6 +17,10 @@ type RoomContainerProps = {
     },
   },
 }
+
+export const RoomContext = createContext({
+  queue: [],
+})
 
 class RoomContainer extends Component<RoomContainerProps> {
   componentDidMount () {
@@ -110,7 +114,7 @@ class RoomContainer extends Component<RoomContainerProps> {
         })
       },
     })
-  };
+  }
 
   render () {
     const { data: { error, loading, room } } = this.props
@@ -128,7 +132,16 @@ class RoomContainer extends Component<RoomContainerProps> {
       return <div>{error.message}</div>
     }
 
-    return <Room addToQueue={this.addToQueue} room={room} />
+    return (
+      <RoomContext.Provider
+        value={{
+          room,
+          actions: { addToQueue: this.addToQueue },
+        }}
+      >
+        <Room addToQueue={this.addToQueue} room={room} />
+      </RoomContext.Provider>
+    )
   }
 }
 
