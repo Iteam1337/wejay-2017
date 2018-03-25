@@ -7,7 +7,7 @@ import styled from 'styled-components'
 
 type Props = {
   joinRoom: (roomName: string) => Promise<void>,
-  rooms: $PropertyType<WejayApi.StartQuery, "rooms">,
+  rooms: $PropertyType<WejayApi.StartQuery, 'rooms'>,
 }
 
 const RoomsList = styled.div`
@@ -31,7 +31,11 @@ const Rooms = ({ joinRoom, rooms }: Props) => {
 
         {hasRooms &&
           rooms.map(room => (
-            <Button key={room.name} onClick={() => joinRoom(room.name)}>
+            <Button
+              data-test={`btn-room-${room.name}`}
+              key={room.name}
+              onClick={() => joinRoom(room.name)}
+            >
               {room.name}
             </Button>
           ))}

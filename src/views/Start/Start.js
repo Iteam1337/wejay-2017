@@ -30,7 +30,7 @@ const Wrap = styled.div`
 `
 
 const Content = styled.div`
-  max-width: 300px;
+  width: 300px;
 `
 
 const Separator = styled.div`
@@ -44,7 +44,7 @@ const Separator = styled.div`
 export class Start extends React.Component<Props, State> {
   state = {
     hasUser: false,
-  };
+  }
 
   async componentDidMount () {
     const id = localStorage.getItem('id')
@@ -61,13 +61,13 @@ export class Start extends React.Component<Props, State> {
     localStorage.setItem('id', id)
 
     this.hasUser()
-  };
+  }
 
   hasUser = () => {
     this.setState({
       hasUser: true,
     })
-  };
+  }
 
   render () {
     const { data: { error, loading, rooms } } = this.props
@@ -90,7 +90,7 @@ export class Start extends React.Component<Props, State> {
             <React.Fragment>
               <Rooms rooms={rooms} />
               <Separator />
-              <AddRoom />
+              <AddRoom rooms={rooms} />
             </React.Fragment>
           )}
         </Content>

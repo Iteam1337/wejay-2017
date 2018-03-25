@@ -20,15 +20,19 @@ const AddRoom = ({ addRoom }: Props) => {
     <Formik
       initialValues={{ roomName: '' }}
       onSubmit={addRoom}
-      render={({ isValid }) => (
+      render={({ errors, isValid }) => (
         <Form>
           <FormInput
-            dataCy="room-name"
+            data-test="input-room-name"
             name="roomName"
             placeholder="Room name"
           />
 
-          <Button disabled={!isValid} type="submit">
+          {errors.roomName && (
+            <div data-test="error-room-name">{errors.roomName}</div>
+          )}
+
+          <Button data-test="btn-add-room" disabled={!isValid} type="submit">
             Add new room
           </Button>
         </Form>

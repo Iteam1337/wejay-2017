@@ -4,10 +4,11 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 type Props = {
+  'data-test'?: string,
   children: React.Node,
   disabled?: boolean,
   onClick?: () => Promise<void>,
-  type?: "button" | "submit",
+  type?: 'button' | 'submit',
 }
 
 const StyledButton = styled.button`
@@ -39,9 +40,20 @@ const StyledButton = styled.button`
   }
 `
 
-const Button = ({ children, disabled, onClick, type = 'button' }: Props) => {
+const Button = ({
+  children,
+  'data-test': dataTest,
+  disabled,
+  onClick,
+  type = 'button',
+}: Props) => {
   return (
-    <StyledButton disabled={disabled} onClick={onClick} type={type}>
+    <StyledButton
+      data-test={dataTest}
+      disabled={disabled}
+      onClick={onClick}
+      type={type}
+    >
       {children}
     </StyledButton>
   )

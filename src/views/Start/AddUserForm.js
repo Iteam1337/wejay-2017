@@ -28,7 +28,7 @@ const AddUserForm = ({ saveUser }: Props) => {
       onSubmit={saveUser}
       render={({ isValid }) => (
         <Form>
-          <FormInput dataCy="email" name="email" placeholder="E-mail" />
+          <FormInput data-test="email" name="email" placeholder="E-mail" />
 
           <Button disabled={!isValid} type="submit">
             Save user

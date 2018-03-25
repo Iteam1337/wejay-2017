@@ -5,7 +5,7 @@ import { Field } from 'formik'
 import styled from 'styled-components'
 
 type Props = {
-  dataCy: string,
+  'data-test': string,
   name: string,
   placeholder?: string,
 }
@@ -26,8 +26,10 @@ const StyledField = styled(Field)`
   }
 `
 
-const FormInput = ({ dataCy, name, placeholder }: Props) => {
-  return <StyledField data-cy={dataCy} name={name} placeholder={placeholder} />
+const FormInput = ({ 'data-test': dataTest, name, placeholder }: Props) => {
+  return (
+    <StyledField data-test={dataTest} name={name} placeholder={placeholder} />
+  )
 }
 
 export default FormInput
