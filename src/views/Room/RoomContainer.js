@@ -46,12 +46,13 @@ class RoomContainer extends Component<RoomContainerProps> {
   addToQueue = async spotifyId => {
     const roomName = this.props.match.params.name
     const savedId = localStorage.getItem('id')
-    const { id } = await storage.getValue(savedId)
+    const { email, id } = await storage.getValue(savedId)
 
     await this.props.addTrack({
       variables: {
         input: {
           roomName,
+          userEmail: email,
           userId: id,
           spotifyId,
         },
@@ -110,7 +111,7 @@ class RoomContainer extends Component<RoomContainerProps> {
         })
       },
     })
-  };
+  }
 
   render () {
     const { data: { error, loading, room } } = this.props
