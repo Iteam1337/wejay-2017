@@ -38,13 +38,12 @@ class SearchResult extends React.Component<SearchResultProps> {
     }
 
     this.props.addToQueue(this.props.track.spotifyUri)
-  };
+  }
 
   existsInQueue = () => {
     const { currentQueue, currentTrack, track } = this.props
 
     const inQueue = !!currentQueue.find(queued => {
-      console.log(queued, track)
       return queued.spotifyUri === track.spotifyUri
     })
 
@@ -52,7 +51,7 @@ class SearchResult extends React.Component<SearchResultProps> {
       currentTrack && track.spotifyUri === currentTrack.spotifyUri
 
     return inQueue || isCurrent
-  };
+  }
 
   render () {
     const { track } = this.props
